@@ -1,7 +1,10 @@
 ﻿namespace Shared.ReadFromUser;
 
+
+
 public static class ReadInput
 {
+  
     public static int ReadChoice(int from, int to, string message)
     {
         int Choice = 0;
