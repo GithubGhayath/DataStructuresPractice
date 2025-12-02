@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Shared.ReadFromUser; 
 
 namespace QueueAndStackProblems01
 {
@@ -10,7 +11,7 @@ namespace QueueAndStackProblems01
     {
         public static void Main(string[] args)
         {
-
+            Console.WriteLine(ReadInput.ReadChoice(1, 10, "Enter a number").ToString());
         }
 
         public static void ImplementBrowserBackButton()
@@ -26,31 +27,9 @@ namespace QueueAndStackProblems01
             Console.WriteLine("[3]. the Animals page");
 
         }
-        public static int ReadChoice(int from , int to,string message)
-        {
-            int Choice = 0;
-            bool Result = true;
-
-           
-
-            do
-            {
-                if (!Result)
-                    Console.WriteLine("Wrong choice try again!");
-
-                Console.WriteLine(message);
-
-                if (int.TryParse(Console.ReadLine(), out int c))
-                    Choice = c;
-
-            } while (Result=(Choice < from || Choice > to));
-
-            return Choice;
-        }
+     
         public static Stack<Page> InspectChoice(Stack<Page>Pages,int choice,string message)
-        {
-
-           
+        {  
             Stack<Page> pages = Pages;
 
             switch (choice)
