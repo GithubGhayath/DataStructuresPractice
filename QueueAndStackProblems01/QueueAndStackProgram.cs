@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Shared.Print;
+using Shared.ReadFromUser; 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Shared.ReadFromUser; 
 
 namespace QueueAndStackProblems01
 {
@@ -11,12 +12,38 @@ namespace QueueAndStackProblems01
     {
         public static void Main(string[] args)
         {
-            ImplementBrowserBackButton();
+            // Problem 2:
+           Console.WriteLine($"The 24 in binary: {ConvertDecimalNumberIntoBinary(24).PrintBinaryFormat()}");
+
+
+            // Problem 1:
+            //ImplementBrowserBackButton();
         }
 
+        // Problem 2: Convert a decimal number to binary using a stack.
+
+        public static Stack<int> ConvertDecimalNumberIntoBinary(int DecimalNumber)
+        {
+            Stack<int> BinaryNumber = new Stack<int>();
+            int Quotient = DecimalNumber;
+            int Remainder = 0;
+
+            while (Quotient > 0)
+            {
+                Remainder = Quotient % 2;
+
+
+                Quotient = Convert.ToInt32(Math.Floor((decimal)Quotient / 2));
+
+                BinaryNumber.Push(Remainder);
+            }
+
+            return BinaryNumber;
+        }
+
+        // Problem 1: Use a stack to implement a browser's back button functionality.
         public static void ImplementBrowserBackButton()
         {
-            // Problem: Use a stack to implement a browser's back button functionality.
 
             Stack<Page> Pages = new Stack<Page>();
             int Choies = 0;
