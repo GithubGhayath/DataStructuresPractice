@@ -2,6 +2,7 @@
 using Shared.ReadFromUser; 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,12 +13,67 @@ namespace QueueAndStackProblems01
     {
         public static void Main(string[] args)
         {
+
+
+            // Problem 3:
+            UndoFunctionalityInCalculator();
+
+
             // Problem 2:
-           Console.WriteLine($"The 24 in binary: {ConvertDecimalNumberIntoBinary(24).PrintBinaryFormat()}");
+            //Console.WriteLine($"The 24 in binary: {ConvertDecimalNumberIntoBinary(24).PrintBinaryFormat()}");
 
 
             // Problem 1:
             //ImplementBrowserBackButton();
+
+
+
+
+        }
+
+        // Problem: Implement undo functionality in a calculator.
+        public static void UndoFunctionalityInCalculator()
+        {
+            Stack<decimal> ResultHistory = new Stack<decimal>();
+
+            char letter = 'y';
+            int Number1 = 0;
+            int Number2 = 0;
+
+            do
+            {
+                Console.WriteLine("Enter first number to sum: ");
+                if (int.TryParse(Console.ReadLine(), out Number1))
+                { }
+
+                Console.WriteLine("Enter second number to sum: ");
+                if (int.TryParse(Console.ReadLine(), out Number2))
+                { }
+
+                int Result = Number1 + Number2;
+                Console.WriteLine($"\nThe result is : {Result}");
+                ResultHistory.Push(Result);
+
+                Console.WriteLine("\n\n Back Result [y/n]: ");
+                letter = Convert.ToChar(Console.ReadLine()!);
+
+                if (letter == 'y')
+                {
+                    break;
+                }
+              
+
+            } while (true);
+
+            do
+            {
+                Console.WriteLine(ResultHistory.Peek());
+                ResultHistory.Pop();
+
+                Console.WriteLine("\n Back Result [y/n]: ");
+                letter = Convert.ToChar(Console.ReadLine()!);
+            } while (letter == 'y');
+
         }
 
         // Problem 2: Convert a decimal number to binary using a stack.
