@@ -15,8 +15,15 @@ namespace QueueAndStackProblems01
         {
 
 
+            // Problem 5:
+            SimulateVehiclesWaitingAtaTrafficSignal();
+
+
+
+
+
             // Problem 4:
-            PrintJob();
+            //PrintJob();
 
 
 
@@ -34,6 +41,40 @@ namespace QueueAndStackProblems01
 
 
 
+        }
+
+        // Problem: Simulate vehicles waiting at a traffic signal.
+
+        public static void SimulateVehiclesWaitingAtaTrafficSignal()
+        {
+            Queue<string> Vehicles = new Queue<string>();
+            Vehicles.Enqueue("Car 1");
+            Vehicles.Enqueue("Truck 1");
+            Vehicles.Enqueue("Bike");
+            Vehicles.Enqueue("Bus");
+
+
+            Console.Write("Traffic Signal Simulation Started");
+            for (int i = 0; i < 5; i++)
+            {
+                Thread.Sleep(1000);
+                Console.Write(".");
+            }
+
+            while (Vehicles.Count > 0)
+            {
+                Thread.Sleep(2000);
+
+                Console.WriteLine($"\n\n {Vehicles.Peek()} has passed the signal.");
+
+
+                Console.WriteLine($"\nVehicles waiting: {string.Join(" , ", Vehicles)}");
+
+                Vehicles.Dequeue();
+            }
+
+            Console.WriteLine("\n\nNo vehicles waiting.");
+            Console.WriteLine("Traffic Signal Simulation Ended.");
         }
         // Problem: Use a queue to manage printer jobs.
         public static void PrintJob()
@@ -55,7 +96,7 @@ namespace QueueAndStackProblems01
 
             while (Jobs.Count > 0)
             {
-                count = Jobs.Count + 1;
+                count = Jobs.Count;
 
                 Console.WriteLine("\n\n\n");
                 Console.WriteLine($" The {count} job: {Jobs.Peek()} in progress!");
