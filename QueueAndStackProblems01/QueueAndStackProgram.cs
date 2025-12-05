@@ -15,8 +15,13 @@ namespace QueueAndStackProblems01
         {
 
 
+            // Problem 4:
+            PrintJob();
+
+
+
             // Problem 3:
-            UndoFunctionalityInCalculator();
+            //UndoFunctionalityInCalculator();
 
 
             // Problem 2:
@@ -29,6 +34,33 @@ namespace QueueAndStackProblems01
 
 
 
+        }
+        // Problem: Use a queue to manage printer jobs.
+        public static void PrintJob()
+        {
+            Queue<string> Jobs = new Queue<string>();
+            string JobName = string.Empty;
+            int count = 0;
+            char letter = 'y';
+            do
+            {
+                Console.WriteLine("Enter a job name: ");
+                JobName = Console.ReadLine()!;
+                Jobs.Enqueue(JobName);
+
+                Console.WriteLine("\n\nComplete? [y/n]");
+                letter = Convert.ToChar(Console.ReadLine()!);
+
+            } while (letter == 'y');
+
+            while (Jobs.Count > 0)
+            {
+                count = Jobs.Count + 1;
+
+                Console.WriteLine("\n\n\n");
+                Console.WriteLine($" The {count} job: {Jobs.Peek()} in progress!");
+                Jobs.Dequeue();
+            }
         }
 
         // Problem: Implement undo functionality in a calculator.
@@ -67,7 +99,8 @@ namespace QueueAndStackProblems01
 
             do
             {
-                Console.WriteLine(ResultHistory.Peek());
+                if (ResultHistory.Count == 0) return;
+                Console.WriteLine("\n The last result is: " + ResultHistory.Peek());
                 ResultHistory.Pop();
 
                 Console.WriteLine("\n Back Result [y/n]: ");
