@@ -15,11 +15,12 @@ namespace QueueAndStackProblems01
         {
 
 
+            // Problem 6:
+            backtrackingMyDay();
+
+
             // Problem 5:
-            SimulateVehiclesWaitingAtaTrafficSignal();
-
-
-
+            //SimulateVehiclesWaitingAtaTrafficSignal();
 
 
             // Problem 4:
@@ -43,8 +44,48 @@ namespace QueueAndStackProblems01
 
         }
 
-        // Problem: Simulate vehicles waiting at a traffic signal.
+        // Problem: Use a stack for backtracking My Day.
+        public static void backtrackingMyDay()
+        {
 
+            string[] arr = new string[]
+            {
+                "Start",
+                "Go to Gaz Station",
+                "Go to Super Market",
+                "Go To Work",
+                "Go to Cafe",
+                "Go Home"
+            };
+
+            Stack<string> BackTracking = new Stack<string>();
+
+            for (int i = 0; i <= arr.Length - 1; i++)
+                BackTracking.Push(arr[i]);
+
+
+
+            Console.Write("Backtracking");
+            for (int i = 0; i <= 5; i++)
+            {
+                Thread.Sleep(1000);
+                Console.Write(".");
+            }
+
+            Console.WriteLine();
+
+            var ReversedStack = BackTracking.Reverse().ToList();
+            Console.Write($"{ReversedStack[0]}");
+            for (int i = 1; i <= ReversedStack.Count()-1; i++)
+            {
+                //Start -> Go to Gaz Station -> Go to Super Market -> Go To Work -> Go to Cafe -> Go Home.
+                Thread.Sleep(500);
+                Console.Write($"-> {ReversedStack[i]}");
+            }
+        
+        }
+
+        // Problem: Simulate vehicles waiting at a traffic signal.
         public static void SimulateVehiclesWaitingAtaTrafficSignal()
         {
             Queue<string> Vehicles = new Queue<string>();
@@ -66,11 +107,11 @@ namespace QueueAndStackProblems01
                 Thread.Sleep(2000);
 
                 Console.WriteLine($"\n\n {Vehicles.Peek()} has passed the signal.");
+                Vehicles.Dequeue();
 
 
                 Console.WriteLine($"\nVehicles waiting: {string.Join(" , ", Vehicles)}");
 
-                Vehicles.Dequeue();
             }
 
             Console.WriteLine("\n\nNo vehicles waiting.");
