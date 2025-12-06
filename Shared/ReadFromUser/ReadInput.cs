@@ -26,4 +26,22 @@ public static class ReadInput
 
         return Choice;
     }
+
+    public static Queue<string> ReadInputInSpecificOrder(string message)
+    {
+        Queue<string> InPutQueue = new Queue<string>();
+        char letter = 'y';
+        do
+        {
+            Console.Clear();
+            Console.WriteLine(message);
+            InPutQueue.Enqueue(Console.ReadLine()!);
+
+            Console.WriteLine("Do you want to add more tasks? [y/n]");
+            letter = Convert.ToChar(Console.ReadLine()!);
+
+        } while (letter == 'y');
+        Console.Clear();
+        return InPutQueue;
+    }
 }
