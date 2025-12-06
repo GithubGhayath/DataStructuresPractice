@@ -15,8 +15,12 @@ namespace QueueAndStackProblems01
         {
 
 
+            // Problem 7:
+            SimulateTheOrderOfExecutionTask(ReadInput.ReadInputInSpecificOrder("Enter a task?"));
+
+
             // Problem 6:
-            backtrackingMyDay();
+            //backtrackingMyDay();
 
 
             // Problem 5:
@@ -42,6 +46,14 @@ namespace QueueAndStackProblems01
 
 
 
+        }
+
+        // Problem: Given a set of tasks with a specific order, simulate the order of execution using a queue.
+        public static void SimulateTheOrderOfExecutionTask(Queue<string> list)
+        {
+           
+            Console.WriteLine($"Input: {string.Join(" , ", list)}");
+            Console.WriteLine("\n\nExecute tasks in the order they appear.");
         }
 
         // Problem: Use a stack for backtracking My Day.
@@ -80,7 +92,7 @@ namespace QueueAndStackProblems01
             {
                 //Start -> Go to Gaz Station -> Go to Super Market -> Go To Work -> Go to Cafe -> Go Home.
                 Thread.Sleep(500);
-                Console.Write($"-> {ReversedStack[i]}");
+                Console.Write($" -> {ReversedStack[i]}");
             }
         
         }
