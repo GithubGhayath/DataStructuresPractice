@@ -15,8 +15,14 @@ namespace QueueAndStackProblems01
         {
 
 
+            // Problem 8:
+
+            ServeCustomer();
+
+
+
             // Problem 7:
-            SimulateTheOrderOfExecutionTask(ReadInput.ReadInputInSpecificOrder("Enter a task?"));
+            //SimulateTheOrderOfExecutionTask(ReadInput.ReadInputInSpecificOrder("Enter a task?"));
 
 
             // Problem 6:
@@ -47,6 +53,86 @@ namespace QueueAndStackProblems01
 
 
         }
+
+        // Problem: Simulate a customer service system where customers are served in the order they arrive.
+        public static void ServeCustomer()
+        {
+            List<Customer> CustomerGenerated = GenerateCustomers(10);
+            Queue<Customer> customers = new Queue<Customer>();
+
+            foreach(Customer customer in CustomerGenerated)
+            {
+                Thread.Sleep(2000);
+                customers = NewCustomer(customer, customers);
+            }
+            Console.WriteLine("\n\n\n\n");
+
+            while (customers.Count > 0)
+            {
+                Thread.Sleep(1000);
+                customers = ServeCustomer(customers);
+            }
+
+            Console.WriteLine("\n\n The process is done...");
+        }
+        public static Queue<Customer> NewCustomer(Customer customer, Queue<Customer> List)
+        {
+            Queue<Customer> OrderList = List;
+
+            OrderList.Enqueue(customer);
+
+            Console.WriteLine($"New customer arrives: {customer}");
+
+            return OrderList;
+        }
+
+        public static Queue<Customer> ServeCustomer(Queue<Customer> OrderList)
+        {
+            Queue<Customer> list = OrderList;
+
+            Console.WriteLine($"The current customer is served{list.Peek()}");
+
+            list.Dequeue();
+
+            if (list.Count > 0)
+                Console.WriteLine($"The Next customer to serve{list.Peek()}");
+
+            return list;
+        }
+
+        public static List<Customer> GenerateCustomers(int numberOfObjects)
+        {
+            List<Customer> customers = new List<Customer>();
+
+            for (int i = 1; i <= numberOfObjects; i++)
+            {
+                customers.Add(new Customer
+                {
+                    OrderID = i,
+                    CustomerName = $"Customer {i}",
+                    OrderDateAndTime = DateTime.Now.AddMinutes(-i), // Just random variation
+                    Contents = new List<string> { "Item A", "Item B", $"Item {i}" }
+                });
+            }
+
+            return customers;
+        }
+
+        public class Customer
+        {
+            public int OrderID { get; set; }
+            public string? CustomerName { get; set; }
+
+            public List<string> Contents = new List<string>();
+
+            public DateTime OrderDateAndTime { get; set; }
+
+            public override string ToString()
+            {
+                return $"{this.OrderID} | {this.CustomerName} | {OrderDateAndTime}\n\t\t{string.Join(", ", Contents)}";
+            }
+        }
+
 
         // Problem: Given a set of tasks with a specific order, simulate the order of execution using a queue.
         public static void SimulateTheOrderOfExecutionTask(Queue<string> list)
