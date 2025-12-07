@@ -9,14 +9,17 @@ using System.Threading.Tasks;
 
 namespace QueueAndStackProblems01
 {
-    internal class QueueAndStackProgram
+    internal static class QueueAndStackProgram
     {
         public static void Main(string[] args)
         {
 
 
+            // Problem 10
+            ReverseElementProblem();
+
             // Problem 9:
-            ProcessRequests();
+            //ProcessRequests();
 
 
             // Problem 8:
@@ -53,7 +56,55 @@ namespace QueueAndStackProblems01
 
         }
 
-        // Problem: Simulate a web server that processes requests in the order they arrive. Example:
+        // Problem: Given a queue, reverse its elements.
+        public static void ReverseElementProblem()
+        {
+            Queue<int> numbers = new Queue<int>();  // 1 , 2 , 3 , 4
+            numbers.Enqueue(1);
+            numbers.Enqueue(2);
+            numbers.Enqueue(3);
+            numbers.Enqueue(4);
+
+            Queue<string> Words = new Queue<string>();  // "Ghayath" , "Ali" , "Maher" , "Yara" 
+            Words.Enqueue("Ghayath");
+            Words.Enqueue("Ali");
+            Words.Enqueue("Maher");
+            Words.Enqueue("Yara");
+
+            numbers.Print("The number before: ");
+            Words.Print("The Words before: ");
+
+
+            numbers = numbers.ManualReverse();
+            Words = Words.ManualReverse();
+
+
+            numbers.Print("The number after: ");
+            Words.Print("The Words after: ");
+
+        }
+        public static Queue<TSource> ManualReverse<TSource>(this Queue<TSource> souce)
+        {
+            Queue<TSource> Qtemp = new Queue<TSource>();
+            Stack<TSource> Stemp = new Stack<TSource>();
+
+            foreach (TSource item in souce) 
+            {
+                Stemp.Push(item);
+            }
+
+            foreach (TSource item in Stemp)
+            {
+                Qtemp.Enqueue(item);
+            }
+
+            return Qtemp;
+        }
+        public static void Print<TSource>(this Queue<TSource> sources,string message)
+        {
+            Console.WriteLine($"{message}: {string.Join(" , ", sources)}");
+        }
+        // Problem: Simulate a web server that processes requests in the order they arrive:
         public static void ProcessRequests()
         {
             List<WebPage> webPages = GenerateWebPages(10);
@@ -79,9 +130,10 @@ namespace QueueAndStackProblems01
 
             Console.WriteLine($"\nThe current request is processed: {Requests.Peek()}");
 
-            requests.Dequeue();
+            Requests.Dequeue();
 
-            Console.WriteLine($"The next request to process: {Requests.Peek()}");
+            if (Requests.Count > 0)
+                Console.WriteLine($"The next request to process: {Requests.Peek()}");
 
             return Requests;
         }
