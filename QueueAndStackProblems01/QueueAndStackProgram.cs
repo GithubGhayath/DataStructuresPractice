@@ -15,10 +15,12 @@ namespace QueueAndStackProblems01
         {
 
 
+            // Problem 9:
+            ProcessRequests();
+
+
             // Problem 8:
-
-            ServeCustomer();
-
+            //ServeCustomer();
 
 
             // Problem 7:
@@ -49,8 +51,76 @@ namespace QueueAndStackProblems01
             // Problem 1:
             //ImplementBrowserBackButton();
 
+        }
 
+        // Problem: Simulate a web server that processes requests in the order they arrive. Example:
+        public static void ProcessRequests()
+        {
+            List<WebPage> webPages = GenerateWebPages(10);
+            Queue<WebPage> Requests = new Queue<WebPage>();
 
+            foreach (WebPage webPage in webPages) 
+            {
+                Thread.Sleep(2000);
+                Requests = NewRequest(webPage, Requests);
+            }
+            Console.WriteLine("\n\n\n");
+
+            while(Requests.Count > 0)
+            {
+                Thread.Sleep(1000);
+                Requests = ProcessRequest(Requests);
+            }
+
+        }
+        public static Queue<WebPage> ProcessRequest(Queue<WebPage> requests)
+        {
+            Queue<WebPage> Requests = requests;
+
+            Console.WriteLine($"\nThe current request is processed: {Requests.Peek()}");
+
+            requests.Dequeue();
+
+            Console.WriteLine($"The next request to process: {Requests.Peek()}");
+
+            return Requests;
+        }
+        public static Queue<WebPage> NewRequest(WebPage webPage, Queue<WebPage> requests)
+        {
+            Queue<WebPage> Requests = requests;
+
+            Requests.Enqueue(webPage);
+
+            Console.WriteLine($"\nNew request arrives: {webPage}");
+
+            return Requests;
+        }
+        public static List<WebPage> GenerateWebPages(int numberOfObjects)
+        {
+            List<WebPage> pages = new List<WebPage>();
+
+            for (int i = 1; i <= numberOfObjects; i++)
+            {
+                pages.Add(new WebPage
+                {
+                    WebPageId = i,
+                    Endpoint = $"https://example.com/page/{i}",
+                    RequestDateAndTime = DateTime.Now.AddSeconds(-i)
+                });
+            }
+
+            return pages;
+        }
+        public class WebPage
+        {
+            public int WebPageId { get; set; }
+            public string? Endpoint { get; set; }
+            public DateTime RequestDateAndTime { get; set; }
+
+            public override string ToString()
+            {
+                return $"{this.WebPageId} | {this.Endpoint} | {this.RequestDateAndTime}";
+            }
 
         }
 
