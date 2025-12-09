@@ -13,10 +13,20 @@ namespace QueueAndStackProblems01
     {
         public static void Main(string[] args)
         {
+            // Problem 11
+
+            Queue<int> queue = new Queue<int>();
+            queue.Enqueue(1);
+            queue.Enqueue(2);
+            queue.Enqueue(3);
+            queue.Enqueue(2);
+            queue.Enqueue(1);
+
+            Console.WriteLine(IsQueuePalindrome(queue));
 
 
             // Problem 10
-            ReverseElementProblem();
+            // ReverseElementProblem();
 
             // Problem 9:
             //ProcessRequests();
@@ -54,6 +64,20 @@ namespace QueueAndStackProblems01
             // Problem 1:
             //ImplementBrowserBackButton();
 
+        }
+
+        // Problem: Check if a queue is a palindrome (same forwards and backwards).   [1, 2, 3, 2, 1]
+        public static bool IsQueuePalindrome(Queue<int> queue)
+        {
+            List<int> NormalOrder = queue.ToList();
+            List<int> ReverseOrder = queue.Reverse().ToList();
+
+            for (int i = 0; i < NormalOrder.Count; i++)
+            {
+                if (NormalOrder[i] != ReverseOrder[i])
+                    return false;
+            }
+            return true;
         }
 
         // Problem: Given a queue, reverse its elements.
