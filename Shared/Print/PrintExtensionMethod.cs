@@ -24,4 +24,9 @@ public static class PrintExtensionMethod
         }
         return Result;
     }
+
+    public static string PrintQueue<TSource>(this Queue<TSource> sources)
+    {
+        return string.Join(" , ", sources);
+    }
 }
