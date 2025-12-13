@@ -13,16 +13,12 @@ namespace QueueAndStackProblems01
     {
         public static void Main(string[] args)
         {
+            // Problem 12
+            GenerateBinaryNumbers(500000);
+
+
             // Problem 11
-
-            Queue<int> queue = new Queue<int>();
-            queue.Enqueue(1);
-            queue.Enqueue(2);
-            queue.Enqueue(3);
-            queue.Enqueue(2);
-            queue.Enqueue(1);
-
-            Console.WriteLine(IsQueuePalindrome(queue));
+            // IsQueuePalindrome();
 
 
             // Problem 10
@@ -66,7 +62,42 @@ namespace QueueAndStackProblems01
 
         }
 
+        // Problem: Generate binary numbers from 1 to N using a queue.
+        public static void GenerateBinaryNumbers(int n)
+        {
+            
+          
+
+            Queue<string> queue = new Queue<string>();
+            queue.Enqueue("1");
+
+
+            for (int i = 0; i < n; i++)
+            {
+                string binary = queue.Dequeue();
+                Console.WriteLine(binary);
+                queue.Enqueue(binary + "0");
+                queue.Enqueue(binary + "1");
+            }
+        }
+
+
+     
+
         // Problem: Check if a queue is a palindrome (same forwards and backwards).   [1, 2, 3, 2, 1]
+        public static void IsQueuePalindrome()
+        {
+
+            Queue<int> queue = new Queue<int>();
+            queue.Enqueue(1);
+            queue.Enqueue(2);
+            queue.Enqueue(3);
+            queue.Enqueue(2);
+            queue.Enqueue(1);
+
+            Console.WriteLine(IsQueuePalindrome(queue));
+        }
+
         public static bool IsQueuePalindrome(Queue<int> queue)
         {
             List<int> NormalOrder = queue.ToList();
