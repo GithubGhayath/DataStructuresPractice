@@ -13,8 +13,12 @@ namespace QueueAndStackProblems01
     {
         public static void Main(string[] args)
         {
+            // Problem 16
+            MergeTwoSortedQueues();
+
+
             // Problem 15
-            RotateAQueue(2);
+            // RotateAQueue(2);
 
             // Problem 14
             // InterleaveQueue();
@@ -34,42 +38,101 @@ namespace QueueAndStackProblems01
             // ReverseElementProblem();
 
             // Problem 9:
-            //ProcessRequests();
+            // ProcessRequests();
 
 
             // Problem 8:
-            //ServeCustomer();
+            // ServeCustomer();
 
 
             // Problem 7:
-            //SimulateTheOrderOfExecutionTask(ReadInput.ReadInputInSpecificOrder("Enter a task?"));
+            // SimulateTheOrderOfExecutionTask(ReadInput.ReadInputInSpecificOrder("Enter a task?"));
 
 
             // Problem 6:
-            //backtrackingMyDay();
+            // backtrackingMyDay();
 
 
             // Problem 5:
-            //SimulateVehiclesWaitingAtaTrafficSignal();
+            // SimulateVehiclesWaitingAtaTrafficSignal();
 
 
             // Problem 4:
-            //PrintJob();
+            // PrintJob();
 
 
 
             // Problem 3:
-            //UndoFunctionalityInCalculator();
+            // UndoFunctionalityInCalculator();
 
 
             // Problem 2:
-            //Console.WriteLine($"The 24 in binary: {ConvertDecimalNumberIntoBinary(24).PrintBinaryFormat()}");
+            // Console.WriteLine($"The 24 in binary: {ConvertDecimalNumberIntoBinary(24).PrintBinaryFormat()}");
 
 
             // Problem 1:
-            //ImplementBrowserBackButton();
+            // ImplementBrowserBackButton();
 
         }
+
+        // problem: Merge two sorted queues.
+        public static void MergeTwoSortedQueues()
+        {
+            Queue<int> FirstQueue = new Queue<int>();
+            Queue<int> SecondQueue = new Queue<int>();
+            Queue<int> SortedMergeQueue = new Queue<int>();
+            int Count = 0;
+            FirstQueue.Enqueue(2);
+            FirstQueue.Enqueue(4);
+            FirstQueue.Enqueue(3);
+            FirstQueue.Enqueue(1); // [ 2 , 3  , 1]
+
+
+            SecondQueue.Enqueue(8);
+            SecondQueue.Enqueue(6);
+            SecondQueue.Enqueue(7);
+            SecondQueue.Enqueue(5); // [ 6 , 4  , 5]
+
+            FirstQueue.Print("First queue:   ");
+            SecondQueue.Print("Second queue:   ");
+
+            FirstQueue = FirstQueue.OrderBy(i => i).ToList().ConvertListToQueue();
+            SecondQueue = SecondQueue.OrderBy(i => i).ToList().ConvertListToQueue();
+            int TotalCount = FirstQueue.Count + SecondQueue.Count;
+
+            while (TotalCount > Count)
+            {
+                int FirstQueueElement;
+                int SecondQueueElement;
+
+                if (SecondQueue.Count > 0 && int.TryParse(SecondQueue.Peek().ToString(), out SecondQueueElement)) { }
+                 else
+                    SecondQueueElement = 0;
+                if (FirstQueue.Count > 0 && int.TryParse(FirstQueue.Peek().ToString(), out FirstQueueElement)) { }
+                else
+                    FirstQueueElement = SecondQueueElement + 1;
+
+
+                if (FirstQueueElement < SecondQueueElement)
+                {
+                    if (FirstQueue.Count > 0)
+                        SortedMergeQueue.Enqueue(FirstQueue.Dequeue());
+                }
+                else
+                {
+                    if (SecondQueue.Count > 0)
+                        SortedMergeQueue.Enqueue(SecondQueue.Dequeue());
+                }
+
+                Count++;
+            }
+
+
+            SortedMergeQueue.Print("After merge and sort:   ");
+
+        }
+
+
         // problem: Rotate a queue by K positions.
         public static void RotateAQueue(int Kpositions)
         {
