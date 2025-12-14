@@ -13,8 +13,11 @@ namespace QueueAndStackProblems01
     {
         public static void Main(string[] args)
         {
+            // Problem 15
+            RotateAQueue(2);
+
             // Problem 14
-            InterleaveQueue();
+            // InterleaveQueue();
 
             // Problem 13
             // PerformSorting();
@@ -67,7 +70,32 @@ namespace QueueAndStackProblems01
             //ImplementBrowserBackButton();
 
         }
+        // problem: Rotate a queue by K positions.
+        public static void RotateAQueue(int Kpositions)
+        {
+            Queue<int> Numbers = new Queue<int>();  // [ 1 , 2 , 3 , 4 , 5 , 6 ]
+            Queue<int> Temp = new Queue<int>();
+            Numbers.Enqueue(1);
+            Numbers.Enqueue(2);
+            Numbers.Enqueue(3);
+            Numbers.Enqueue(4);
+            Numbers.Enqueue(5);
 
+
+            if (Kpositions < 0) return;
+            if (Kpositions == 0)
+                Numbers.Print($"Queue after rotate by {Kpositions}");
+            if (Kpositions >= Numbers.Count)
+                string.Join(" , ", Numbers.Reverse().ToList());
+
+            for (int i = 0; i < Kpositions; i++)
+            {
+                Temp.Enqueue(Numbers.Dequeue());
+                Numbers.Enqueue(Temp.Dequeue());
+            }
+
+            Numbers.Print($"Queue after rotate by K={Kpositions}:  ");
+        }
         // problem: Interleave the first half of a queue with the second half.
         public static void InterleaveQueue()
         {
