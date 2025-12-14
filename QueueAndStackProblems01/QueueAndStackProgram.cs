@@ -13,8 +13,11 @@ namespace QueueAndStackProblems01
     {
         public static void Main(string[] args)
         {
+            // Problem 14
+            InterleaveQueue();
+
             // Problem 13
-            PerformSorting();
+            // PerformSorting();
 
             // Problem 12
             // GenerateBinaryNumbers(500000);
@@ -65,6 +68,58 @@ namespace QueueAndStackProblems01
 
         }
 
+        // problem: Interleave the first half of a queue with the second half.
+        public static void InterleaveQueue()
+        {
+            Queue<int> Numbers = new Queue<int>();
+            Stack<int> FirstHalf = new Stack<int>();
+            Stack<int> SecondHalf = new Stack<int>();
+            int Count = 0;
+            Numbers.Enqueue(1);
+            Numbers.Enqueue(2);
+            Numbers.Enqueue(3);
+            Numbers.Enqueue(4);
+            Numbers.Enqueue(5);
+            Numbers.Enqueue(6);
+            Numbers.Enqueue(7);
+            Numbers.Enqueue(8);
+            Numbers.Enqueue(9);
+            int HalfOfQueue = (int)Math.Ceiling((decimal)Numbers.Count / 2);
+
+            Numbers.Print("Element queue before interleave: ");  // Element queue before interleave:  [ 1 , 2 , 3 , 4 , 5 , 6 ]
+
+            while (Numbers.Count > 0)
+            {
+                if (Count < HalfOfQueue)
+                    FirstHalf.Push(Numbers.Peek());
+                else
+                    SecondHalf.Push(Numbers.Peek());
+
+                Numbers.Dequeue();
+                Count++;
+            }
+           
+
+            Count = 0;
+            Numbers.Enqueue(FirstHalf.Pop());
+           
+
+            while (HalfOfQueue >= Count)
+            {
+                if (FirstHalf.Count != 0 && Numbers.Count % 2 == 0)
+                    Numbers.Enqueue(FirstHalf.Pop());
+
+
+
+                if (SecondHalf.Count != 0 && Numbers.Count % 2 != 0)
+                    Numbers.Enqueue(SecondHalf.Pop());
+
+                Count++;
+            }
+
+            Numbers.Print("\nElement queue After interleave: "); // Element queue After interleave:  [ 1 , 4 , 2 , 5 , 3 , 6 ]
+        }
+
         // Problem: Sort elements in a queue in ascending order.
         public static Queue<int> SortQueueAsc(this Queue<int> queue)
         {
@@ -99,13 +154,13 @@ namespace QueueAndStackProblems01
             Numbers.Enqueue(3);
             Numbers.Enqueue(1);
 
-            Console.WriteLine("Unorder queue: ");
-            Console.WriteLine(Numbers.PrintQueue());
+
+            Console.WriteLine(Numbers.PrintQueue("Unorder queue: "));
 
             Numbers = SortQueueAsc(Numbers);
 
-            Console.WriteLine("order queue: ");
-            Console.WriteLine(Numbers.PrintQueue());
+
+            Console.WriteLine(Numbers.PrintQueue("order queue: "));
         }
 
         // Problem: Generate binary numbers from 1 to N using a queue.
