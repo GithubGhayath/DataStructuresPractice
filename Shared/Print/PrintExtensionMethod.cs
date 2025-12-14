@@ -29,4 +29,15 @@ public static class PrintExtensionMethod
     {
         return $"{Message} {string.Join(" , ", sources)}";
     }
+    public static Queue<TSource> ConvertListToQueue<TSource>(this List<TSource> source)
+    {
+        Queue<TSource> Result = new Queue<TSource>();
+
+        foreach (TSource item in source) 
+        {
+            Result.Enqueue(item);
+        }
+
+        return Result;
+    }
 }
