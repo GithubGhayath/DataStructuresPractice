@@ -13,8 +13,12 @@ namespace QueueAndStackProblems01
     {
         public static void Main(string[] args)
         {
+            // Problem 17
+            FirstNonRepeatingCharacter();
+
+
             // Problem 16
-            MergeTwoSortedQueues();
+            // MergeTwoSortedQueues();
 
 
             // Problem 15
@@ -73,6 +77,62 @@ namespace QueueAndStackProblems01
             // Problem 1:
             // ImplementBrowserBackButton();
 
+        }
+        // problem: First non-repeating character in a stream.
+
+        private static void DictionaryCounter(Dictionary<char, int> Counter,char letter)
+        {
+            Dictionary<char, int> counter = Counter;
+
+            if (counter.TryGetValue(letter, out int OldValue))
+            {
+                int NewValue = OldValue++;
+                counter.Remove(letter);
+                counter.Add(letter, NewValue);
+            }
+            else
+            {
+                counter.Add(letter, 1);
+            }
+        }
+
+        public static (Queue<char>, Dictionary<char, int>) ReadCharFromUser()
+        {
+            Queue<char> chars = new Queue<char>();
+            Dictionary<char, int> Counter = new Dictionary<char, int>();
+            char letter = 'n';
+
+            do
+            {
+                Console.Clear();
+                Console.Write("Enter a char:  ");
+                char InputChar = Convert.ToChar(Console.ReadLine()!);
+                chars.Enqueue(InputChar);
+                DictionaryCounter(Counter, InputChar);
+
+                Console.WriteLine("\n\nDo you want to add more: [y/n]");
+                letter = Convert.ToChar(Console.ReadLine()!);
+
+            } while (letter == 'y');
+
+            return (chars, Counter);
+        }
+
+        public static void FirstNonRepeatingCharacter()
+        {
+            var result = ReadCharFromUser();
+            Queue<char> chars = result.Item1;
+            Dictionary<char, int> Count= result.Item2;
+            Queue<char> QueueNonRepeating = new Queue<char>();
+
+            foreach (KeyValuePair<char, int> item in Count)
+            {
+                if (item.Value == 1)
+                    QueueNonRepeating.Enqueue(item.Key);
+            }
+
+            chars.Print("\n\n\nThe user input: ");
+            QueueNonRepeating.Print("\nUnique chars: ");
         }
 
         // problem: Merge two sorted queues.
