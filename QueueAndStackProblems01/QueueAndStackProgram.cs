@@ -6,6 +6,7 @@ using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace QueueAndStackProblems01
 {
@@ -13,8 +14,11 @@ namespace QueueAndStackProblems01
     {
         public static void Main(string[] args)
         {
+            // Problem 18
+            ImplementedQueue();
+
             // Problem 17
-            FirstNonRepeatingCharacter();
+            // FirstNonRepeatingCharacter();
 
 
             // Problem 16
@@ -78,6 +82,62 @@ namespace QueueAndStackProblems01
             // ImplementBrowserBackButton();
 
         }
+
+        // problem: Implement a queue using two stacks. Enqueue() and Dequeue()
+        public class CustomQueue<T> 
+        {
+            Stack<T> _EnqueueStack = new Stack<T>();    
+            Stack<T> _DequeueStack = new Stack<T>();
+            private int _NumberOfElement = 0;
+
+            public int NumberOfElement
+            {
+                private set { _NumberOfElement = value; }
+                get { return _NumberOfElement; }
+            }
+
+            public void Enqueue(T value) 
+            {
+                NumberOfElement++;
+                _EnqueueStack.Push(value);
+            }
+          
+
+            public T Dequeue()
+            {
+                ReverseStacks();
+                _NumberOfElement--;
+                return _DequeueStack.Pop();
+            }
+
+            private void ReverseStacks()
+            {
+                while (_EnqueueStack.Count > 0)
+                {
+                    _DequeueStack.Push(_EnqueueStack.Pop());
+                }
+            }
+        }
+
+        public static void ImplementedQueue()
+        {
+            CustomQueue<int> quque = new CustomQueue<int>();
+
+            quque.Enqueue(1);
+            quque.Enqueue(2);
+            quque.Enqueue(3);
+            quque.Enqueue(4);
+
+
+
+            while (quque.NumberOfElement > 0)
+            {
+                Console.WriteLine(quque.Dequeue());
+            }
+
+
+        }
+
         // problem: First non-repeating character in a stream.
 
         private static void DictionaryCounter(Dictionary<char, int> Counter,char letter)
