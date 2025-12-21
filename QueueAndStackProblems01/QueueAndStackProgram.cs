@@ -14,8 +14,11 @@ namespace QueueAndStackProblems01
     {
         public static void Main(string[] args)
         {
+            // Problem 19
+            PerformRearrangeQueue();
+
             // Problem 18
-            ImplementedQueue();
+            // ImplementedQueue();
 
             // Problem 17
             // FirstNonRepeatingCharacter();
@@ -82,6 +85,73 @@ namespace QueueAndStackProblems01
             // ImplementBrowserBackButton();
 
         }
+
+        // problem: Rearrange elements in  a queue alternately in increasing and decreasing order
+
+        public static void PerformRearrangeQueue()
+        {
+            Queue<int> queue = new Queue<int>();
+            queue.Enqueue(1);
+            queue.Enqueue(2);
+            queue.Enqueue(3);
+            queue.Enqueue(4);
+            queue.Enqueue(5);
+            queue.Enqueue(6);  // [1 , 2 , 3 , 4 , 5 , 6]
+            queue.Print("Before Rearrange: ");
+            RearrangeQueue(queue);
+            queue.Print("After Rearrange: ");
+        }
+        public static void RearrangeQueue(Queue<int> queue)
+        {
+           
+            Queue<int> FirstPart = new Queue<int>();
+            Queue<int> SecondPart = new Queue<int>();
+            Stack<int> Temp = new Stack<int>();
+            int HalfOfQueueElementNumber = (int)Math.Ceiling((decimal)(queue.Count / 2));
+            int Count = 0;
+            int TotalCount = queue.Count;
+
+            while (Count != HalfOfQueueElementNumber)
+            {
+
+                FirstPart.Enqueue(queue.Dequeue());
+                Count++;
+            }
+
+            while (queue.Count>0)
+            {
+
+                Temp.Push(queue.Dequeue());
+              
+            }
+
+            while (Temp.Count > 0)
+            {
+
+                SecondPart.Enqueue(Temp.Pop());
+              
+            }
+
+            Count = 0;
+            while (Count < TotalCount)
+            {
+                if (Count % 2 == 0)
+                {
+                    if (FirstPart.Count != 0)
+                        queue.Enqueue(FirstPart.Dequeue());
+                  
+                }
+                else
+                {
+                    if (SecondPart.Count != 0)
+                        queue.Enqueue(SecondPart.Dequeue());
+                }
+                Count++;
+            }
+
+
+        }
+
 
         // problem: Implement a queue using two stacks. Enqueue() and Dequeue()
         public class CustomQueue<T> 
