@@ -14,8 +14,12 @@ namespace QueueAndStackProblems01
     {
         public static void Main(string[] args)
         {
+            // Problem 20
+            PerformMissions();
+
+
             // Problem 19
-            PerformRearrangeQueue();
+            // PerformRearrangeQueue();
 
             // Problem 18
             // ImplementedQueue();
@@ -85,6 +89,44 @@ namespace QueueAndStackProblems01
             // ImplementBrowserBackButton();
 
         }
+        // problem: Priority Queue
+
+        public class Mission
+        {
+            public string? Message { get; private set; }
+            public int PriorityLevel { get; private set; }
+
+            public Mission(int priorityLevel , string message)
+            {
+                this.PriorityLevel = priorityLevel;
+                this.Message = message;
+            }
+
+            public override string ToString()
+            {
+                return $"{this.Message} | {this.PriorityLevel}";
+            }
+        }
+
+        public static void PerformMissions()
+        {
+            Queue<Mission> queue = new Queue<Mission>();
+            queue.Enqueue(new Mission(7, "Do homework."));
+            queue.Enqueue(new Mission(5, "Go to gym."));
+            queue.Enqueue(new Mission(4, "plying."));
+            queue.Enqueue(new Mission(1, "codding."));
+            queue.Enqueue(new Mission(6, "Studying."));
+            queue.Enqueue(new Mission(2, "eating."));
+            queue.Enqueue(new Mission(3, "go to university."));
+
+
+            var SortedQueue = queue.OrderBy(o => o.PriorityLevel).ToList();
+
+
+            Console.WriteLine("The missions ordered based on highest priority");
+            SortedQueue.ForEach(m => Console.WriteLine(m));
+        }
+
 
         // problem: Rearrange elements in  a queue alternately in increasing and decreasing order
 
