@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
@@ -14,8 +15,11 @@ namespace QueueAndStackProblems01
     {
         public static void Main(string[] args)
         {
+            // Problem 21
+            PerformRearrangeEvenAndOddElements();
+
             // Problem 20
-            PerformMissions();
+            // PerformMissions();
 
 
             // Problem 19
@@ -89,6 +93,57 @@ namespace QueueAndStackProblems01
             // ImplementBrowserBackButton();
 
         }
+
+
+        // problem: Rearrange even and odd elements
+        private static bool CheckEvenNumber(int num)
+        {
+            return num % 2 == 0;
+        }
+        public static void PerformRearrangeEvenAndOddElements()
+        {
+            Queue<int> queue = new Queue<int>();
+            Queue<int> Oddqueue = new Queue<int>();
+            Queue<int> Evenqueue = new Queue<int>();
+            int Count = 0;
+
+
+            queue.Enqueue(1);
+            queue.Enqueue(2);
+            queue.Enqueue(3);
+            queue.Enqueue(4);
+            queue.Enqueue(5);
+            queue.Enqueue(6);
+            int TotelElemntNumber = queue.Count;
+
+
+            queue.Print("Queue element: ");
+            while (queue.Count > 0)
+            {
+                int temp = queue.Dequeue();
+
+                if (CheckEvenNumber(temp))
+                    Evenqueue.Enqueue(temp);
+                else
+                    Oddqueue.Enqueue(temp);
+            }
+
+            while (Count < TotelElemntNumber)
+            {
+                if (Evenqueue.Count > 0)
+                    queue.Enqueue(Evenqueue.Dequeue());
+                if (Evenqueue.Count == 0 && Oddqueue.Count > 0)
+                    queue.Enqueue(Oddqueue.Dequeue());
+
+                Count++;
+            }
+
+            queue.Print("Queue element after rearrange: ");
+        }
+
+
+
+
         // problem: Priority Queue
 
         public class Mission
