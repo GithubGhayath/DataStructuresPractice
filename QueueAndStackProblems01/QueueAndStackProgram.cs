@@ -15,8 +15,12 @@ namespace QueueAndStackProblems01
     {
         public static void Main(string[] args)
         {
+            // Problem 24
+            CheckBalancedParentheses();
+
+
             // Problem 23
-            ReverseStringUsingStack();
+            // ReverseStringUsingStack();
 
 
             // Problem 22
@@ -123,8 +127,9 @@ namespace QueueAndStackProblems01
             queue.Print("Queue element: ");
             Console.WriteLine($"The middle element in queue {MiddleElement}");
         }
+   
+        
         // problem: Reverse a given string using a stack
-
         public static void ReverseStringUsingStack() 
         {
             string Word = "Hello";
@@ -146,6 +151,76 @@ namespace QueueAndStackProblems01
             Console.WriteLine($"Word after revers: {ReversedWord}");
 
         }
+
+        // problem: Check balanced parentheses
+        public static void CheckBalancedParentheses()
+        {
+            Queue<char> ChartQueue = new Queue<char>();
+            Stack<char> ChartStack = new Stack<char>();
+            bool Result = false;
+            string Text = ReadInput.ReadText("Enter parentheses: ");
+
+            if (Text.Length % 2 != 0) 
+            {
+                Console.WriteLine("false");
+                return;
+            }
+            int MiddleElement = Text.Length / 2;
+            for (int i = 0; i < Text.Length; i++)
+            {
+                if (i <= MiddleElement - 1)
+                    ChartQueue.Enqueue(Text[i]);
+                else
+                    ChartStack.Push(Text[i]);
+            }
+
+
+            while (ChartQueue.Count > 0)
+            {
+
+                char characterFromQueue = ChartQueue.Dequeue();
+                char characterFromStack = ChartStack.Pop();
+
+                if (characterFromQueue == '(')
+                {
+                    if (characterFromStack == ')')
+                        Result = true;
+                    else
+                    {
+                        Result = false;
+                        break;
+                    }
+                }
+
+
+                if (characterFromQueue == '{')
+                {
+                    if (characterFromStack == '}')
+                        Result = true;
+                    else
+                    {
+                        Result = false;
+                        break;
+                    }
+                }
+
+
+                if (characterFromQueue == '[')
+                {
+                    if (characterFromStack == ']')
+                        Result = true;
+                    else
+                    {
+                        Result = false;
+                        break;
+                    }
+                }
+
+            }
+
+            Console.WriteLine(Result);
+        }
+
         // problem: Rearrange even and odd elements
         private static bool CheckEvenNumber(int num)
         {
@@ -192,6 +267,7 @@ namespace QueueAndStackProblems01
             queue.Print("Queue element after rearrange: ");
         }
 
+     
         // problem: Priority Queue
 
         public class Mission
