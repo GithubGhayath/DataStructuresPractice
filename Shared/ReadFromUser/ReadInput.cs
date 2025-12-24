@@ -44,4 +44,21 @@ public static class ReadInput
         Console.Clear();
         return InPutQueue;
     }
+
+    public static string ReadTest(string message) 
+    {
+        string Text = string.Empty;
+        bool TestResult = false;
+        do
+        {
+            if (TestResult)
+                Console.WriteLine("Invalid input try again");
+
+            Console.WriteLine(message);
+            Text = Console.ReadLine();
+
+        } while (TestResult = string.IsNullOrEmpty(Text));
+
+        return Text!;
+    }
 }
