@@ -45,7 +45,7 @@ public static class ReadInput
         return InPutQueue;
     }
 
-    public static string ReadTest(string message) 
+    public static string ReadText(string message) 
     {
         string Text = string.Empty;
         bool TestResult = false;
