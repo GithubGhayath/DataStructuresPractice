@@ -15,8 +15,12 @@ namespace QueueAndStackProblems01
     {
         public static void Main(string[] args)
         {
+            // Problem 23
+            ReverseStringUsingStack();
+
+
             // Problem 22
-            FindTheMiddleElementInQueue();
+            //FindTheMiddleElementInQueue();
 
 
             // Problem 21
@@ -119,7 +123,29 @@ namespace QueueAndStackProblems01
             queue.Print("Queue element: ");
             Console.WriteLine($"The middle element in queue {MiddleElement}");
         }
-      
+        // problem: Reverse a given string using a stack
+
+        public static void ReverseStringUsingStack() 
+        {
+            string Word = "Hello";
+            string ReversedWord = string.Empty;
+            Stack<char> LettersTemp = new Stack<char>();
+           
+            
+            for (int i = 0; i < Word.Length; i++)
+            {
+                LettersTemp.Push(Word[i]);
+            }
+
+            while (LettersTemp.Count > 0)
+            {
+                ReversedWord += LettersTemp.Pop();
+            }
+
+            Console.WriteLine($"The original word: {Word}");
+            Console.WriteLine($"Word after revers: {ReversedWord}");
+
+        }
         // problem: Rearrange even and odd elements
         private static bool CheckEvenNumber(int num)
         {
