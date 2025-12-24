@@ -15,8 +15,12 @@ namespace QueueAndStackProblems01
     {
         public static void Main(string[] args)
         {
+            // Problem 22
+            FindTheMiddleElementInQueue();
+
+
             // Problem 21
-            PerformRearrangeEvenAndOddElements();
+            // PerformRearrangeEvenAndOddElements();
 
             // Problem 20
             // PerformMissions();
@@ -93,8 +97,29 @@ namespace QueueAndStackProblems01
             // ImplementBrowserBackButton();
 
         }
+        // problem: Clone a queue without using extra space
+        // problem: Find Middle element in a queue 
+        public static void FindTheMiddleElementInQueue()
+        {
+            Queue<int> queue = new Queue<int>();
+            queue.Enqueue(1);
+            queue.Enqueue(2);
+            queue.Enqueue(3);
+            queue.Enqueue(4);
+            queue.Enqueue(5);
+            queue.Enqueue(6);
+            queue.Enqueue(7);
 
+            var Queue = queue.ToList();
 
+          
+
+            int MiddleElement = Queue[(int)Queue.Count / 2];
+
+            queue.Print("Queue element: ");
+            Console.WriteLine($"The middle element in queue {MiddleElement}");
+        }
+      
         // problem: Rearrange even and odd elements
         private static bool CheckEvenNumber(int num)
         {
@@ -140,9 +165,6 @@ namespace QueueAndStackProblems01
 
             queue.Print("Queue element after rearrange: ");
         }
-
-
-
 
         // problem: Priority Queue
 
