@@ -15,8 +15,11 @@ namespace QueueAndStackProblems01
     {
         public static void Main(string[] args)
         {
+            // Problem 25
+            EvaluatePostfixExpression();
+
             // Problem 24
-            CheckBalancedParentheses();
+            // CheckBalancedParentheses();
 
 
             // Problem 23
@@ -105,7 +108,67 @@ namespace QueueAndStackProblems01
             // ImplementBrowserBackButton();
 
         }
-        // problem: Clone a queue without using extra space
+
+        // Problem: Evaluate a postfix expression using a stack.
+        private static (double, double) GetLastTwoNumbersFromStack(Stack<double> Numbers)
+        {
+            double FirstNumber = Numbers.Pop();
+            double SecondNumber = Numbers.Pop();
+
+            return (FirstNumber, SecondNumber);
+        }
+        public static void EvaluatePostfixExpression()
+        {
+            string Expression = string.Empty;
+            Stack<double> Numbers = new Stack<double>();
+
+            Expression = ReadInput.ReadText("Enter an expression: ");
+            Expression = Expression.Trim();
+            Console.WriteLine($"Evaluating expression: {Expression} .....");
+
+            for (int i = 0; i < Expression.Length; i++)  // 231*+9- 
+            {
+                if (Expression[i] == '*')
+                {
+                    var LastTwoItems = GetLastTwoNumbersFromStack(Numbers);
+                    Numbers.Push(LastTwoItems.Item1 * LastTwoItems.Item2);
+                    continue;
+                }
+
+                if (Expression[i] == '-')
+                {
+                    var LastTwoItems = GetLastTwoNumbersFromStack(Numbers);
+                    Numbers.Push(LastTwoItems.Item1 - LastTwoItems.Item2);
+                    continue;
+                }
+
+                if (Expression[i] == '+')
+                {
+                    var LastTwoItems = GetLastTwoNumbersFromStack(Numbers);
+                    Numbers.Push(LastTwoItems.Item1 + LastTwoItems.Item2);
+                    continue;
+                }
+
+                if (Expression[i] == '/')
+                {
+                    var LastTwoItems = GetLastTwoNumbersFromStack(Numbers);
+                    Numbers.Push(LastTwoItems.Item1 / LastTwoItems.Item2);
+                    continue;
+                }
+
+                if (Expression[i] == '%')
+                {
+                    var LastTwoItems = GetLastTwoNumbersFromStack(Numbers);
+                    Numbers.Push(LastTwoItems.Item1 % LastTwoItems.Item2);
+                    continue;
+                }
+                if (double.TryParse(Expression[i].ToString(), out double r))
+                {
+                    Numbers.Push(r);
+                }
+            }
+            Console.WriteLine($"The last element in the stack ({Numbers.Pop()}) is popped and returned as the result.");
+        }
         // problem: Find Middle element in a queue 
         public static void FindTheMiddleElementInQueue()
         {
@@ -117,7 +180,7 @@ namespace QueueAndStackProblems01
             queue.Enqueue(5);
             queue.Enqueue(6);
             queue.Enqueue(7);
-
+        
             var Queue = queue.ToList();
 
           
@@ -127,8 +190,7 @@ namespace QueueAndStackProblems01
             queue.Print("Queue element: ");
             Console.WriteLine($"The middle element in queue {MiddleElement}");
         }
-   
-        
+           
         // problem: Reverse a given string using a stack
         public static void ReverseStringUsingStack() 
         {
@@ -267,9 +329,13 @@ namespace QueueAndStackProblems01
             queue.Print("Queue element after rearrange: ");
         }
 
-     
-        // problem: Priority Queue
+        // problem: Clone a queue without using extra space
 
+        // problem: Check palindrome using a stack               input: madam = true    input: hello = false
+      
+
+
+        // problem: Priority Queue
         public class Mission
         {
             public string? Message { get; private set; }
