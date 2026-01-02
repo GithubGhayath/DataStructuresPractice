@@ -15,8 +15,11 @@ namespace QueueAndStackProblems01
     {
         public static void Main(string[] args)
         {
+            // Problem 26
+            EvaluateMathematicalExpression();
+
             // Problem 25
-            EvaluatePostfixExpression();
+            //EvaluatePostfixExpression();
 
             // Problem 24
             // CheckBalancedParentheses();
@@ -108,8 +111,66 @@ namespace QueueAndStackProblems01
             // ImplementBrowserBackButton();
 
         }
+        // problem: Evaluate a mathematical expression containing +, -, (, ) without * or /.
+        public static void EvaluateMathematicalExpression()
+        {
+            string Expression = string.Empty;
+            Stack<double> Numbers = new Stack<double>();
+            Stack<char> Operations = new Stack<char>();
 
-        // Problem: Evaluate a postfix expression using a stack.
+            Expression = ReadInput.ReadText("Enter an expression: ");
+            Expression = Expression.Trim();
+            Console.WriteLine($"Evaluating expression: {Expression} ....."); // 1 + (2 - 3)  1+(2*(2+(1+2)))
+            
+            for (int i = 0; i < Expression.Length; i++)
+            {
+                if (Expression[i] == '+' || Expression[i] == '*' || Expression[i] == '/' || Expression[i] == '-')
+                {
+                    Operations.Push(Expression[i]);
+                    continue;
+                }
+
+                if (char.IsNumber(Expression[i]))
+                {
+                    if (double.TryParse(Expression[i].ToString(), out double r))
+                        Numbers.Push(r);
+                    continue;
+                }
+            }
+
+           
+
+            while (Operations.Count > 0)
+            {
+                switch (Operations.Pop()) 
+                {
+                    case '*':
+                        var LastTwoItemsToMultiply = GetLastTwoNumbersFromStack(Numbers);
+                        Numbers.Push(LastTwoItemsToMultiply.Item2 * LastTwoItemsToMultiply.Item1);
+                        break;
+
+
+                    case '+':
+                        var LastTwoItemsToSum = GetLastTwoNumbersFromStack(Numbers);
+                        Numbers.Push(LastTwoItemsToSum.Item2 + LastTwoItemsToSum.Item1);
+                        break;
+
+
+                    case '/':
+                        var LastTwoItemsToDivide = GetLastTwoNumbersFromStack(Numbers);
+                        Numbers.Push(LastTwoItemsToDivide.Item2 / LastTwoItemsToDivide.Item1);
+                        break;
+
+
+                    case '-':
+                        var LastTwoItemsToSub = GetLastTwoNumbersFromStack(Numbers);
+                        Numbers.Push(LastTwoItemsToSub.Item2 - LastTwoItemsToSub.Item1);
+                        break;
+                }
+            }
+            Console.WriteLine($"The last element in the stack ({Numbers.Pop()}) is popped and returned as the result.");
+        }
+        // problem: Evaluate a postfix expression using a stack.
         private static (double, double) GetLastTwoNumbersFromStack(Stack<double> Numbers)
         {
             double FirstNumber = Numbers.Pop();
