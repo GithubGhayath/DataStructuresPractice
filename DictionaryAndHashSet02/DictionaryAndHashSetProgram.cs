@@ -11,11 +11,11 @@ namespace DictionaryAndHashSet02
     {
         public static void Main(string[] args)
         {
+            // problem 02
+            BookInfo();
+
             // problem 01
             // StudentGrades();
-
-            Dictionary<string, string> Dic = ReadInput.ReadInfoAsKayValueFormat("Enter as format Kay/value");
-         
         }
 
         // problem: Store the grades of students using their names as keys and retrieve Bob's info using student name
@@ -47,6 +47,20 @@ namespace DictionaryAndHashSet02
             else
             {
                 Console.WriteLine("Salah is not in list");
+            }
+        }
+
+        // problem: Store information about books (Title,Author) using their ISBN as the key
+        public static void BookInfo()
+        {
+            Dictionary<string, (string, string)> BooksInfo = new Dictionary<string, (string, string)>();
+            BooksInfo.Add("6516146465165", ("The C Programming Language", "Brian W. Kernighan and Dennis M. Ritchie"));
+            BooksInfo.Add("3453425436654", ("Introduction to Algorithms", "Thomas H. Cormen"));
+            BooksInfo.Add("2143546675745", ("First Design Patterns", "F. Scott"));
+
+            foreach (var kvp in BooksInfo) 
+            {
+                Console.WriteLine($"{kvp.Key} | {kvp.Value.Item1} | {kvp.Value.Item2}");
             }
         }
     }
