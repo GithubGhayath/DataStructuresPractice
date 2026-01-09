@@ -61,4 +61,30 @@ public static class ReadInput
 
         return Text!;
     }
+    public static Dictionary<string, string> ReadInfoAsKayValueFormat(string message) 
+    {
+        char _letter = 'n';
+        bool _Result = true;
+        Dictionary<string, string> Dictionary = new Dictionary<string, string>();
+
+        do
+        {
+            if (_Result)
+            {
+                Console.WriteLine(message); // Accepted format Key/Value
+                string _Input = Console.ReadLine()!;
+                string _Key = _Input.Substring(0, _Input.IndexOf('/'));
+                string _Value = _Input.Substring(_Input.IndexOf('/') + 1, (_Input.Length  - _Key.Length)-1 ) ;
+                Dictionary.Add(_Key, _Value);
+                Console.Clear();
+            }
+
+            Console.Write("Do you want to add more items [y/n]: ");
+            _letter = Convert.ToChar(Console.ReadLine()!);
+
+        } while (_Result = (_letter == 'y'));
+
+
+        return Dictionary;
+    }
 }
