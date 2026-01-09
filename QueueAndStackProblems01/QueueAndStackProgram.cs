@@ -111,6 +111,17 @@ namespace QueueAndStackProblems01
             // ImplementBrowserBackButton();
 
         }
+        // problem: Remove invalid parentheses  (())) ===> (())
+
+        // problem: Check palindrome using a stack               input: madam = true    input: hello = false
+
+
+        // problem: Clone a queue without using extra space
+        
+        
+        
+        
+        
         // problem: Evaluate a mathematical expression containing +, -, (, ) without * or /.
         public static void EvaluateMathematicalExpression()
         {
@@ -389,12 +400,6 @@ namespace QueueAndStackProblems01
 
             queue.Print("Queue element after rearrange: ");
         }
-
-        // problem: Clone a queue without using extra space
-
-        // problem: Check palindrome using a stack               input: madam = true    input: hello = false
-      
-
 
         // problem: Priority Queue
         public class Mission
