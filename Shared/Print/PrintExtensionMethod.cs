@@ -40,4 +40,13 @@ public static class PrintExtensionMethod
 
         return Result;
     }
+
+    public static void Print<Tkey,TValue>(this Dictionary<Tkey, TValue> Dictionary)
+    {
+        Console.WriteLine("\nThe Dictionary contents as [Key | Value] format: ");
+        foreach (KeyValuePair<Tkey, TValue> kvp in Dictionary) 
+        {
+            Console.WriteLine($"{kvp.Key} | {kvp.Value}");
+        }
+    }
 }
