@@ -13,8 +13,11 @@ namespace DictionaryAndHashSet02
     {
         public static void Main(string[] args)
         {
+            // problem 05
+            Phonebook();
+
             // problem 04
-            CountTheFrequencyOfWords();
+            // CountTheFrequencyOfWords();
 
             // problem 03
             // TranslateSomeWorld();
@@ -115,8 +118,15 @@ namespace DictionaryAndHashSet02
                 }
             }
 
-            WordsWithCount.Print();
+            WordsWithCount.Print("");
 
+        }
+        // problem: Implement a phonebook where you can store and retrieve contact numbers using names.
+        public static void Phonebook()
+        {
+            Dictionary<string, string> Phonebook = ReadInput.ReadInfoAsKayValueFormat("Enter a record as [Name/PhoneNumber] format");
+
+            Phonebook.Print("The Contacts are:");
         }
     }
 }
