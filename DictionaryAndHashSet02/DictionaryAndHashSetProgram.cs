@@ -13,8 +13,12 @@ namespace DictionaryAndHashSet02
     {
         public static void Main(string[] args)
         {
+            // problem 06
+            PerformTracking();
+
+
             // problem 05
-            Phonebook();
+            // Phonebook();
 
             // problem 04
             // CountTheFrequencyOfWords();
@@ -127,6 +131,54 @@ namespace DictionaryAndHashSet02
             Dictionary<string, string> Phonebook = ReadInput.ReadInfoAsKayValueFormat("Enter a record as [Name/PhoneNumber] format");
 
             Phonebook.Print("The Contacts are:");
+        }
+        // problem: Track unique visitors to a website using Ip addresses
+        public static void TrackingVisitors(List<string>Ips)
+        {
+            Dictionary<string, int> VisitorTracker = new Dictionary<string, int>();
+
+            foreach (string Ip in Ips)
+            {
+                if (VisitorTracker.TryGetValue(Ip, out int VisitCount))
+                {
+                    VisitorTracker.Remove(Ip);
+                    VisitorTracker.Add(Ip, ++VisitCount);
+                }
+                else
+                {
+                    VisitorTracker.Add(Ip, 1);
+                }
+            }
+
+            VisitorTracker.Print("\nThe visitor tracker list:");
+        }
+        public static void PerformTracking()
+        {
+            List<string> Ips = new List<string> 
+            {
+                "172.15.0.1",
+                "172.15.0.1",
+                "172.15.0.1",
+                "174.15.0.1",
+                "174.15.0.1",
+                "175.15.0.1",
+                "175.15.0.1",
+                "171.15.0.1",
+                "171.15.0.1",
+                "171.15.0.1",
+                "171.15.0.1",
+                "171.15.0.1",
+                "174.15.0.1",
+                "176.15.0.1",
+                "176.15.0.1",
+                "177.15.0.1",
+                "178.15.0.1",
+                "179.15.0.1",
+                "179.15.0.1",
+               
+            };
+
+            TrackingVisitors(Ips);
         }
     }
 }
