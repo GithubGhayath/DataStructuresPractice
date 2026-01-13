@@ -49,4 +49,13 @@ public static class PrintExtensionMethod
             Console.WriteLine($"{kvp.Key} | {kvp.Value}");
         }
     }
+
+    public static void Print<T>(this HashSet<T> HashSet,string message)
+    {
+        Console.WriteLine($"\n\n{message}");
+        foreach (T item in HashSet)
+        {
+            Console.Write(item + " ");
+        }
+    }
 }
