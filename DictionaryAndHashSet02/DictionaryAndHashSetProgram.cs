@@ -13,8 +13,12 @@ namespace DictionaryAndHashSet02
     {
         public static void Main(string[] args)
         {
+            // problem 07
+            // CheckDuplicateData();
+
+
             // problem 06
-            PerformTracking();
+            // PerformTracking();
 
 
             // problem 05
@@ -180,5 +184,13 @@ namespace DictionaryAndHashSet02
 
             TrackingVisitors(Ips);
         }
+        // problem: Detect duplicates as data added 
+        public static void CheckDuplicateData()
+        {
+            string[] Text = ReadInput.ReadText("Enter a text: ").Split(" ");
+            HashSet<string> Data = new HashSet<string>(Text);
+            Data.Print("The data from text: ");
+        }
+
     }
 }
