@@ -13,6 +13,10 @@ namespace DictionaryAndHashSet02
     {
         public static void Main(string[] args)
         {
+            // problem 08
+            MatchingSkills();
+
+
             // problem 07
             // CheckDuplicateData();
 
@@ -192,5 +196,19 @@ namespace DictionaryAndHashSet02
             Data.Print("The data from text: ");
         }
 
+        // problem: Match a Candidate skills to a job required skills
+        public static void MatchingSkills()
+        {
+            HashSet<string> Candidate = new HashSet<string>();
+            Candidate.Add("C#");
+            Candidate.Add("SQL");
+            Candidate.Add("JavaScript");
+
+            string[] Skills = ReadInput.ReadText("Enter your skills at format: [skill1,skill2..etc]").Split(',');
+            HashSet<string> JobRequirements = new HashSet<string>(Skills);
+
+            HashSet<string> Matches = new HashSet<string>(JobRequirements.Intersect(Candidate));
+            Matches.Print("Matching skills: ");
+        }
     }
 }
