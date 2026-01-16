@@ -13,8 +13,11 @@ namespace DictionaryAndHashSet02
     {
         public static void Main(string[] args)
         {
+            // problem 09
+            CountTheFrequencyCharacterInString();
+
             // problem 08
-            MatchingSkills();
+            // MatchingSkills();
 
 
             // problem 07
@@ -210,5 +213,32 @@ namespace DictionaryAndHashSet02
             HashSet<string> Matches = new HashSet<string>(JobRequirements.Intersect(Candidate));
             Matches.Print("Matching skills: ");
         }
+        // problem: Count the frequency of each character in a string.
+        private static bool _IsCharInDictionary(char _letter, Dictionary<char, int> Count)
+        {
+            foreach (KeyValuePair<char,int> kvp in Count)
+            {
+                if (kvp.Key == _letter) return true;
+            }
+            return false;
+        }
+        public static void CountTheFrequencyCharacterInString()
+        {
+            Dictionary<char, int> _Count = new Dictionary<char, int>();
+            string Text = ReadInput.ReadText("Enter a text: ");
+            for (int i = 0; i < Text.Length; i++)
+            {
+                if (_IsCharInDictionary(Text[i], _Count))
+                {
+                    int OldValue = _Count[Text[i]];
+                    _Count.Remove(Text[i]);
+                    _Count.Add(Text[i], ++OldValue);
+                }
+                else
+                    _Count.Add(Text[i], 1);
+            }
+            _Count.Print("OutPut:");
+        }
+
     }
 }
