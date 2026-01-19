@@ -14,10 +14,17 @@ namespace DictionaryAndHashSet02
     {
         public static void Main(string[] args)
         {
+            // problem 12
+            UniqueElements();
+
             // problem 11
-            DuplicateElementInArray();
+            // DuplicateElementInArray();
+
+
             // problem 10
             // MajorityElementInArray();
+
+
             // problem 09
             // CountTheFrequencyCharacterInString();
 
@@ -307,6 +314,17 @@ namespace DictionaryAndHashSet02
             var DuplicateElements = _NumberwithFrequency.Where(kvp => kvp.Value % 2 == 0).Select(kvp => kvp.Key).ToList();
             Console.WriteLine("The duplicate elements in list [ 1, 3, 4, 1, 6, 7, 2, 5, 2 ] are:");
             Console.WriteLine($"{string.Join(" , ", DuplicateElements)}");
+        }
+
+        // problem: Return all unique elements from an array
+        public static void UniqueElements()
+        {
+            int[] arr = new int[] { 1, 1, 2, 3, 2, 3, 4, 4, 5, 1, 2 };
+
+            HashSet<int> UniquElement = new HashSet<int>(arr);
+
+            Console.WriteLine("The unique elements at list [ 1, 1, 2, 3, 2, 3, 4, 4, 5, 1, 2 ] are: ");
+            Console.WriteLine(string.Join(" , ", UniquElement));
         }
     }
 }
