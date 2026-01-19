@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Cryptography.X509Certificates;
 
 namespace DictionaryAndHashSet02
 {
@@ -13,8 +14,10 @@ namespace DictionaryAndHashSet02
     {
         public static void Main(string[] args)
         {
+            // problem 11
+            DuplicateElementInArray();
             // problem 10
-            MajorityElementInArray();
+            // MajorityElementInArray();
             // problem 09
             // CountTheFrequencyCharacterInString();
 
@@ -244,6 +247,11 @@ namespace DictionaryAndHashSet02
 
         // problem: Find the length of the longest consecutuve sequence in an array
 
+
+
+
+
+
         // problem: Find the majority element in an array (element that appearing more than n/2 times)
         public static bool _IsNumberInDictionary(int number, Dictionary<int, int> NumberWithFrequency) 
         {
@@ -277,6 +285,28 @@ namespace DictionaryAndHashSet02
 
             Console.WriteLine("The majority element in list [ 3, 2, 3, 2, 1 ]");
             ToPrint.ForEach(i=>Console.WriteLine(i));
+        }
+
+        // problem: Identify duplicate elements in an array
+        public static void DuplicateElementInArray()
+        {
+            int[] arr = new int[] { 1, 3, 4, 1, 6, 7, 2, 5, 2 };
+            Dictionary<int, int> _NumberwithFrequency = new Dictionary<int, int>();
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (_IsNumberInDictionary(arr[i], _NumberwithFrequency))
+                {
+                    int OldFrequency = _NumberwithFrequency[arr[i]];
+                    _NumberwithFrequency.Remove(arr[i]);
+                    _NumberwithFrequency.Add(arr[i], ++OldFrequency);
+                }
+                else
+                    _NumberwithFrequency.Add(arr[i], 1);
+            }
+
+            var DuplicateElements = _NumberwithFrequency.Where(kvp => kvp.Value % 2 == 0).Select(kvp => kvp.Key).ToList();
+            Console.WriteLine("The duplicate elements in list [ 1, 3, 4, 1, 6, 7, 2, 5, 2 ] are:");
+            Console.WriteLine($"{string.Join(" , ", DuplicateElements)}");
         }
     }
 }
