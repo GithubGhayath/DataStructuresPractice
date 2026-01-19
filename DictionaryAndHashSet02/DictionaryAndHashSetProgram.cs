@@ -13,8 +13,10 @@ namespace DictionaryAndHashSet02
     {
         public static void Main(string[] args)
         {
+            // problem 10
+            MajorityElementInArray();
             // problem 09
-            CountTheFrequencyCharacterInString();
+            // CountTheFrequencyCharacterInString();
 
             // problem 08
             // MatchingSkills();
@@ -240,5 +242,41 @@ namespace DictionaryAndHashSet02
             _Count.Print("OutPut:");
         }
 
+        // problem: Find the length of the longest consecutuve sequence in an array
+
+        // problem: Find the majority element in an array (element that appearing more than n/2 times)
+        public static bool _IsNumberInDictionary(int number, Dictionary<int, int> NumberWithFrequency) 
+        {
+            foreach (KeyValuePair<int, int> kvp in NumberWithFrequency)
+            {
+                if(kvp.Key == number)
+                    return true;
+            }
+            return false;
+        }
+        public static void MajorityElementInArray()
+        {
+            int[] arr = new int[] { 3, 2, 3, 2, 1 };
+            Dictionary<int, int> NumberWithFrequency = new Dictionary<int, int>();
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (_IsNumberInDictionary(arr[i], NumberWithFrequency))
+                {
+                    int OldFrequency = NumberWithFrequency[arr[i]];
+                    NumberWithFrequency.Remove(arr[i]);
+                    NumberWithFrequency.Add(arr[i], ++OldFrequency);
+                }
+                else
+                {
+                    NumberWithFrequency.Add(arr[i], 1);
+                }
+            }
+
+            var ToPrint = NumberWithFrequency.Where(kvp => kvp.Value % 2 == 0).Select(kvp => kvp.Key).ToList();
+
+            Console.WriteLine("The majority element in list [ 3, 2, 3, 2, 1 ]");
+            ToPrint.ForEach(i=>Console.WriteLine(i));
+        }
     }
 }
