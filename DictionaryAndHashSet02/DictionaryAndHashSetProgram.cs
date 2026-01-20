@@ -14,8 +14,11 @@ namespace DictionaryAndHashSet02
     {
         public static void Main(string[] args)
         {
+            // problem 13
+            WordsTypedUseingQWERTY();
+
             // problem 12
-            UniqueElements();
+            // UniqueElements();
 
             // problem 11
             // DuplicateElementInArray();
@@ -325,6 +328,104 @@ namespace DictionaryAndHashSet02
 
             Console.WriteLine("The unique elements at list [ 1, 1, 2, 3, 2, 3, 4, 4, 5, 1, 2 ] are: ");
             Console.WriteLine(string.Join(" , ", UniquElement));
+        }
+
+        // Problem: Return all words that can be typed using one row of a QWERTY keyboard.
+        private static bool _IsLetterAtQWERTY_Row(char letter)
+        {
+            char[] FirstRow = { 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p' };
+
+            for (int i = 0; i < FirstRow.Length; i++)
+            {
+                if(FirstRow[i] == letter) return true;
+            }
+            return false;
+        }
+        private static bool _IsLetterAtASDFGHJKL_Row(char letter)
+        {
+            char[] FirstRow = { 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l' };
+
+            for (int i = 0; i < FirstRow.Length; i++)
+            {
+                if (FirstRow[i] == letter) return true;
+            }
+            return false;
+        }
+        private static bool _IsLetterAtZXCVBNM_Row(char letter)
+        {
+            char[] FirstRow = { 'z', 'x', 'c', 'v', 'b', 'n', 'm' };
+
+            for (int i = 0; i < FirstRow.Length; i++)
+            {
+                if (FirstRow[i] == letter) return true;
+            }
+            return false;
+        }
+
+        private static bool _IsWordAtQWERTY_Row(string word)
+        {
+            for (int i = 0; i < word.Length; i++)
+            {
+                if (_IsLetterAtQWERTY_Row(char.ToLower(word[i])))
+                    continue;
+                else
+                    return false;
+            }
+            return true;
+        }
+
+        private static bool _IsWordASDFGHJKL_Row(string word)
+        {
+            for (int i = 0; i < word.Length; i++)
+            {
+                if (_IsLetterAtASDFGHJKL_Row(char.ToLower(word[i])))
+                    continue;
+                else
+                    return false;
+            }
+            return true;
+        }
+
+        private static bool _IsWordAtZXCVBNM_Row(string word)
+        {
+            for (int i = 0; i < word.Length; i++)
+            {
+                if (_IsLetterAtZXCVBNM_Row(char.ToLower(word[i])))
+                    continue;
+                else
+                    return false;
+            }
+            return true;
+        }
+
+        public static void WordsTypedUseingQWERTY()
+        {
+            string[] Words = ["Hello", "Alaska", "Dad", "Peace"];
+            Dictionary<string, string> WordWithRowName = new Dictionary<string, string>();
+
+            for (int i = 0; i < Words.Length; i++)
+            {
+                if (_IsWordAtQWERTY_Row(Words[i]))
+                {
+                    WordWithRowName.Add(Words[i], "QWERTYUIOP_ First Row");
+                    continue;
+                }
+                if (_IsWordASDFGHJKL_Row(Words[i]))
+                {
+                    WordWithRowName.Add(Words[i], "ASDFGHJKL_ Second Row");
+                    continue;
+                }
+                if (_IsWordAtZXCVBNM_Row(Words[i]))
+                {
+                    WordWithRowName.Add(Words[i], "ZXCVBNM_ Third Row"); 
+                    continue;
+                }
+                else
+                    WordWithRowName.Add(Words[i], "Mix letter");
+            }
+
+            WordWithRowName.Print("\nThe world orderd by keyboard rows: ");
+
         }
     }
 }
