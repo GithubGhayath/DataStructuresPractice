@@ -15,8 +15,14 @@ namespace DictionaryAndHashSet02
     {
         public static void Main(string[] args)
         {
+            // problem 18
+            MissingNumberInRange();
+
+            // problem 17
+            // MissingNumberInRange();
+
             // problem 16
-            AllElementsInFirstArrayAreNotInSecondArray();
+            // AllElementsInFirstArrayAreNotInSecondArray();
 
             // problem 15
             // CommonCharactersInWords();
@@ -459,11 +465,6 @@ namespace DictionaryAndHashSet02
                 }
             }
 
-
-
-          
-            
-
             Console.WriteLine($"The missing number at array: [{string.Join(" , ", SortedElements)}]");
             MissingNumbers.ForEach(i => Console.Write($" {i}"));
         }
@@ -519,6 +520,31 @@ namespace DictionaryAndHashSet02
         }
 
         // problem: find all numbers missing form the range 1 t0 n in an array [ 4 , 3 , 2 , 7 , 8 , 2 , 3 , 1 ] ==> [ 5 , 6 ]
+        public static void MissingNumberInRange()
+        {
+            int[] arr = new int[] { 4, 3, 2, 7, 8, 2, 3, 1 };
+            var OrderUniqueNumberrs = new HashSet<int>(arr).OrderBy(i => i).ToList(); // [ 1 , 2 , 3 , 4 , 7 , 8 ]
+            List<int> MissingNumbers = new List<int>();
+            int Number = 0;
 
+
+            for (int i = 0; i < OrderUniqueNumberrs.Count; i++)
+            {
+                Number++;
+
+                if (OrderUniqueNumberrs[i] == Number)
+                    continue;
+                else
+                {
+                    MissingNumbers.Add(Number);
+                    i--;
+                }
+            }
+
+            Console.WriteLine($"The missing number at array: [{string.Join(" , ", arr)}]");
+            Console.WriteLine($"[{string.Join(" , ", MissingNumbers)}]");
+          
+
+        }
     }
 }
