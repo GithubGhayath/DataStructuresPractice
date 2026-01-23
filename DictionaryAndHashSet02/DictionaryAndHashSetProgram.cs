@@ -15,8 +15,11 @@ namespace DictionaryAndHashSet02
     {
         public static void Main(string[] args)
         {
+            // problem 16
+            AllElementsInFirstArrayAreNotInSecondArray();
+
             // problem 15
-            CommonCharactersInWords();
+            // CommonCharactersInWords();
 
             // problem 14
             // FindMissingNumbersInAnArray();
@@ -500,9 +503,20 @@ namespace DictionaryAndHashSet02
             Console.WriteLine(string.Join(" , ", ToPrint));
 
         }
-        
 
         // problem: Find all elements in the first array that are not in the second array (num1) = [1 , 2 , 3 , 4] ==> (num2) = [3 , 4 , 5 , 6]  ===> [1 , 2]
+        public static void AllElementsInFirstArrayAreNotInSecondArray()
+        {
+            int[] arr1 = new int[] { 1, 2, 3, 4 };
+            int[] arr2 = new int[] { 3, 4, 5, 6 };
+
+            HashSet<int>Set1 = new HashSet<int>(arr1);
+            HashSet<int>Set2 = new HashSet<int>(arr2);
+
+            Set1.ExceptWith(Set2);
+
+            Console.WriteLine(string.Join(" , ", Set1));
+        }
 
         // problem: find all numbers missing form the range 1 t0 n in an array [ 4 , 3 , 2 , 7 , 8 , 2 , 3 , 1 ] ==> [ 5 , 6 ]
 
