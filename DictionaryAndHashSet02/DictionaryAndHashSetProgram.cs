@@ -1,12 +1,13 @@
-﻿using Shared.ReadFromUser;
-using Shared.Print;
+﻿using Shared.Print;
+using Shared.ReadFromUser;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using System.Security.Cryptography.X509Certificates;
+using System.Xml.Linq;
 
 namespace DictionaryAndHashSet02
 {
@@ -14,8 +15,11 @@ namespace DictionaryAndHashSet02
     {
         public static void Main(string[] args)
         {
+            // problem 14
+            FindMissingNumbersInAnArray();
+
             // problem 13
-            WordsTypedUseingQWERTY();
+            // WordsTypedUseingQWERTY();
 
             // problem 12
             // UniqueElements();
@@ -397,7 +401,6 @@ namespace DictionaryAndHashSet02
             }
             return true;
         }
-
         public static void WordsTypedUseingQWERTY()
         {
             string[] Words = ["Hello", "Alaska", "Dad", "Peace"];
@@ -427,5 +430,38 @@ namespace DictionaryAndHashSet02
             WordWithRowName.Print("\nThe world orderd by keyboard rows: ");
 
         }
+
+        // problem: Find the missing number in an array of size n, containing numbers from 0 to n.
+        public static void FindMissingNumbersInAnArray()
+        {
+            int[] arr = new int[] { 3, 0, 1 ,2,5,8,10};
+            List<int> MissingNumbers = new List<int>();
+            var SortedElements = arr.Order().ToList();
+            int Number = -1;
+
+
+            for (int i = 0; i < SortedElements.Count; i++) 
+            {
+                Number++;
+
+                if (SortedElements[i] == Number)
+                    continue;
+                else
+                {
+                    MissingNumbers.Add(Number);
+                    i--;
+                }
+            }
+
+
+
+          
+            
+
+            Console.WriteLine($"The missing number at array: [{string.Join(" , ", SortedElements)}]");
+            MissingNumbers.ForEach(i => Console.Write($" {i}"));
+        }
+
+
     }
 }
