@@ -15,8 +15,11 @@ namespace DictionaryAndHashSet02
     {
         public static void Main(string[] args)
         {
+            // problem 15
+            CommonCharactersInWords();
+
             // problem 14
-            FindMissingNumbersInAnArray();
+            // FindMissingNumbersInAnArray();
 
             // problem 13
             // WordsTypedUseingQWERTY();
@@ -462,6 +465,46 @@ namespace DictionaryAndHashSet02
             MissingNumbers.ForEach(i => Console.Write($" {i}"));
         }
 
+        // problem: Find common characters in strings, find all common characters between multiple string ["bella" , "label" , "roller"] ==> ["e" , "l"]  (reapeted over 3 times)
+        private static bool _IsLetterInDictionary(char letter, Dictionary<char, int> LetterWithCount)
+        {
+            foreach (KeyValuePair<char, int> kvp in LetterWithCount)
+            {
+                if (letter == kvp.Key)
+                    return true;
+            }
+            return false;
+        }
+        public static void CommonCharactersInWords()
+        {
+            string[] Words = new string[] { "bella", "label", "roller" };
+            Dictionary<char, int> LetterWithCount = new Dictionary<char, int>();
+
+            foreach (string word in Words) 
+            {
+                for (int i = 0; i < word.Length; i++) 
+                {
+                    if (_IsLetterInDictionary(word[i], LetterWithCount))
+                    {
+                        int OldFrequency = LetterWithCount[word[i]];
+                        LetterWithCount.Remove(word[i]);
+                        LetterWithCount.Add(word[i], ++OldFrequency);
+                    }
+                    else
+                        LetterWithCount.Add(word[i], 1);
+                }
+            }
+
+            var ToPrint = LetterWithCount.Where(kvp => kvp.Value >= 3).Select(kvp => kvp.Key).ToList();
+            Console.WriteLine("The common characters in words: [\"bella\" , \"label\" , \"roller\"] are:");
+            Console.WriteLine(string.Join(" , ", ToPrint));
+
+        }
+        
+
+        // problem: Find all elements in the first array that are not in the second array (num1) = [1 , 2 , 3 , 4] ==> (num2) = [3 , 4 , 5 , 6]  ===> [1 , 2]
+
+        // problem: find all numbers missing form the range 1 t0 n in an array [ 4 , 3 , 2 , 7 , 8 , 2 , 3 , 1 ] ==> [ 5 , 6 ]
 
     }
 }
