@@ -15,8 +15,11 @@ namespace DictionaryAndHashSet02
     {
         public static void Main(string[] args)
         {
+            // problem 19
+            CheckIfTwoArraysHaveNoCommon();
+
             // problem 18
-            MissingNumberInRange();
+            // MissingNumberInRange();
 
             // problem 17
             // MissingNumberInRange();
@@ -546,5 +549,33 @@ namespace DictionaryAndHashSet02
           
 
         }
+        // problem: Determine if two arrays have no common elements arr1 = [1,2,3] arr2=[4,5,6] return ture
+
+        public static bool _AreArrayhaveNoCommon(int[] arr1, int[] arr2)
+        {
+            HashSet<int> Set1 = new HashSet<int>(arr1); 
+            HashSet<int> Set2 = new HashSet<int>(arr2);
+
+            Set1.IntersectWith(Set2);
+            return !Set1.Any();
+        }
+        public static void CheckIfTwoArraysHaveNoCommon()
+        {
+            int[] arr1 = new int[] { 1, 2, 3 };
+            int[] arr2 = new int[] { 4, 5, 6 };
+
+            if (_AreArrayhaveNoCommon(arr1, arr2))
+                Console.WriteLine("Arrays: \narray1: [1,2,3]\narray2: [4,5,6]\nhave no common elements");
+            else
+                Console.WriteLine("Arrays: \narray1: [1,2,3]\narray2: [4,5,6]\nhave common elements");
+
+
+
+        }
+
+        // problem: Check if a sentence contains every letter of the english alphabet at least once.
+
+
+
     }
 }
