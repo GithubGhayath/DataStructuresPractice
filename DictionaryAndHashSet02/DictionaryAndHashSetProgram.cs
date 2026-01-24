@@ -15,8 +15,11 @@ namespace DictionaryAndHashSet02
     {
         public static void Main(string[] args)
         {
+            // problem 20
+            IsSentenceInEnglish();
+
             // problem 19
-            CheckIfTwoArraysHaveNoCommon();
+            // CheckIfTwoArraysHaveNoCommon();
 
             // problem 18
             // MissingNumberInRange();
@@ -574,7 +577,48 @@ namespace DictionaryAndHashSet02
         }
 
         // problem: Check if a sentence contains every letter of the english alphabet at least once.
+        private static bool _IsLetterAlphabet(char ch)
+        {
+            if (ch == ' ') return true;
 
+            char[] alphabet = Enumerable.Range('a', 26)
+                           .Select(c => (char)c)
+                           .ToArray();
+            for (int i = 0; i < alphabet.Length; i++)
+            {
+                if (char.ToLower(ch) == alphabet[i])
+                    return true;
+            }
+            return false;
+        }
+        public static void _IsSentenceInEnglish(string sentence)
+        {
+            bool _Result = false;
+            HashSet<char> Letters = new HashSet<char>(sentence);
+
+
+            foreach (char letter in Letters)
+            {
+                if (_IsLetterAlphabet(letter))
+                {
+                    _Result = true;
+                    continue;
+                }
+                else
+                {
+                    _Result = false;
+                    break;
+                }
+            }
+            string Result = _Result ? "is in English" : "is not in English";
+
+            Console.WriteLine($"Sentence {sentence} : {Result}");
+        }
+        public static void IsSentenceInEnglish()
+        {
+            string Sentence = "Hello this is the text senلtence all letters are in english language";
+            _IsSentenceInEnglish(Sentence);
+        }
 
 
     }
