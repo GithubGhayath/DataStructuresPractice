@@ -16,7 +16,7 @@ namespace DictionaryAndHashSet02
         public static void Main(string[] args)
         {
             // problem 20
-            IsSentenceInEnglish();
+            // IsSentenceInEnglish();
 
             // problem 19
             // CheckIfTwoArraysHaveNoCommon();
@@ -121,7 +121,7 @@ namespace DictionaryAndHashSet02
             BooksInfo.Add("3453425436654", ("Introduction to Algorithms", "Thomas H. Cormen"));
             BooksInfo.Add("2143546675745", ("First Design Patterns", "F. Scott"));
 
-            foreach (var kvp in BooksInfo) 
+            foreach (var kvp in BooksInfo)
             {
                 Console.WriteLine($"{kvp.Key} | {kvp.Value.Item1} | {kvp.Value.Item2}");
             }
@@ -134,7 +134,7 @@ namespace DictionaryAndHashSet02
             Words.Add("Hello", "Hola");
             Words.Add("Goodbye", "Adios");
 
-            foreach (KeyValuePair<string,string> kvp in Words) 
+            foreach (KeyValuePair<string, string> kvp in Words)
             {
                 Console.WriteLine($"{kvp.Key} in Spanish: {kvp.Value}");
             }
@@ -156,9 +156,9 @@ namespace DictionaryAndHashSet02
 
             string[] TextFromUser = ReadInput.ReadText("Enter a text: ").Split(" ");
 
-         
 
-            foreach (string word in TextFromUser) 
+
+            foreach (string word in TextFromUser)
             {
                 if (!_IsWordInDictionary(word, WordsWithCount))
                     WordsWithCount.Add(word, 1);
@@ -181,7 +181,7 @@ namespace DictionaryAndHashSet02
             Phonebook.Print("The Contacts are:");
         }
         // problem: Track unique visitors to a website using Ip addresses
-        public static void TrackingVisitors(List<string>Ips)
+        public static void TrackingVisitors(List<string> Ips)
         {
             Dictionary<string, int> VisitorTracker = new Dictionary<string, int>();
 
@@ -202,7 +202,7 @@ namespace DictionaryAndHashSet02
         }
         public static void PerformTracking()
         {
-            List<string> Ips = new List<string> 
+            List<string> Ips = new List<string>
             {
                 "172.15.0.1",
                 "172.15.0.1",
@@ -223,7 +223,7 @@ namespace DictionaryAndHashSet02
                 "178.15.0.1",
                 "179.15.0.1",
                 "179.15.0.1",
-               
+
             };
 
             TrackingVisitors(Ips);
@@ -253,7 +253,7 @@ namespace DictionaryAndHashSet02
         // problem: Count the frequency of each character in a string.
         private static bool _IsCharInDictionary(char _letter, Dictionary<char, int> Count)
         {
-            foreach (KeyValuePair<char,int> kvp in Count)
+            foreach (KeyValuePair<char, int> kvp in Count)
             {
                 if (kvp.Key == _letter) return true;
             }
@@ -285,11 +285,11 @@ namespace DictionaryAndHashSet02
 
 
         // problem: Find the majority element in an array (element that appearing more than n/2 times)
-        public static bool _IsNumberInDictionary(int number, Dictionary<int, int> NumberWithFrequency) 
+        public static bool _IsNumberInDictionary(int number, Dictionary<int, int> NumberWithFrequency)
         {
             foreach (KeyValuePair<int, int> kvp in NumberWithFrequency)
             {
-                if(kvp.Key == number)
+                if (kvp.Key == number)
                     return true;
             }
             return false;
@@ -316,7 +316,7 @@ namespace DictionaryAndHashSet02
             var ToPrint = NumberWithFrequency.Where(kvp => kvp.Value % 2 == 0).Select(kvp => kvp.Key).ToList();
 
             Console.WriteLine("The majority element in list [ 3, 2, 3, 2, 1 ]");
-            ToPrint.ForEach(i=>Console.WriteLine(i));
+            ToPrint.ForEach(i => Console.WriteLine(i));
         }
 
         // problem: Identify duplicate elements in an array
@@ -359,7 +359,7 @@ namespace DictionaryAndHashSet02
 
             for (int i = 0; i < FirstRow.Length; i++)
             {
-                if(FirstRow[i] == letter) return true;
+                if (FirstRow[i] == letter) return true;
             }
             return false;
         }
@@ -438,7 +438,7 @@ namespace DictionaryAndHashSet02
                 }
                 if (_IsWordAtZXCVBNM_Row(Words[i]))
                 {
-                    WordWithRowName.Add(Words[i], "ZXCVBNM_ Third Row"); 
+                    WordWithRowName.Add(Words[i], "ZXCVBNM_ Third Row");
                     continue;
                 }
                 else
@@ -452,13 +452,13 @@ namespace DictionaryAndHashSet02
         // problem: Find the missing number in an array of size n, containing numbers from 0 to n.
         public static void FindMissingNumbersInAnArray()
         {
-            int[] arr = new int[] { 3, 0, 1 ,2,5,8,10};
+            int[] arr = new int[] { 3, 0, 1, 2, 5, 8, 10 };
             List<int> MissingNumbers = new List<int>();
             var SortedElements = arr.Order().ToList();
             int Number = -1;
 
 
-            for (int i = 0; i < SortedElements.Count; i++) 
+            for (int i = 0; i < SortedElements.Count; i++)
             {
                 Number++;
 
@@ -490,9 +490,9 @@ namespace DictionaryAndHashSet02
             string[] Words = new string[] { "bella", "label", "roller" };
             Dictionary<char, int> LetterWithCount = new Dictionary<char, int>();
 
-            foreach (string word in Words) 
+            foreach (string word in Words)
             {
-                for (int i = 0; i < word.Length; i++) 
+                for (int i = 0; i < word.Length; i++)
                 {
                     if (_IsLetterInDictionary(word[i], LetterWithCount))
                     {
@@ -517,8 +517,8 @@ namespace DictionaryAndHashSet02
             int[] arr1 = new int[] { 1, 2, 3, 4 };
             int[] arr2 = new int[] { 3, 4, 5, 6 };
 
-            HashSet<int>Set1 = new HashSet<int>(arr1);
-            HashSet<int>Set2 = new HashSet<int>(arr2);
+            HashSet<int> Set1 = new HashSet<int>(arr1);
+            HashSet<int> Set2 = new HashSet<int>(arr2);
 
             Set1.ExceptWith(Set2);
 
@@ -549,14 +549,13 @@ namespace DictionaryAndHashSet02
 
             Console.WriteLine($"The missing number at array: [{string.Join(" , ", arr)}]");
             Console.WriteLine($"[{string.Join(" , ", MissingNumbers)}]");
-          
+
 
         }
         // problem: Determine if two arrays have no common elements arr1 = [1,2,3] arr2=[4,5,6] return ture
-
         public static bool _AreArrayhaveNoCommon(int[] arr1, int[] arr2)
         {
-            HashSet<int> Set1 = new HashSet<int>(arr1); 
+            HashSet<int> Set1 = new HashSet<int>(arr1);
             HashSet<int> Set2 = new HashSet<int>(arr2);
 
             Set1.IntersectWith(Set2);
