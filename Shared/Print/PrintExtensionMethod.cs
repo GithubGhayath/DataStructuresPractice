@@ -58,4 +58,13 @@ public static class PrintExtensionMethod
             Console.Write(item + " ");
         }
     }
+
+    public static void Print<Tkey, Tvalue>(this SortedList<Tkey, Tvalue> SortedList, string Message)
+    {
+        Console.WriteLine(Message);
+        foreach (var kvp in SortedList)
+        {
+            Console.WriteLine($"{kvp.Key} | {kvp.Value}");
+        }
+    }
 }
