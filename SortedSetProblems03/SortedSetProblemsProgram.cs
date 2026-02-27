@@ -24,7 +24,7 @@ namespace SortedSetProblems03
             foreach (T item in set)
             {
 
-                if (item.CompareTo(Low) >= 0 && item.CompareTo(High) <= 0)
+                if (Low.CompareTo(item) <= 0 && High.CompareTo(item) >= 0)
                     Result.Add(item);
             }
 
