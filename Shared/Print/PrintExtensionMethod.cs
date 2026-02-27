@@ -67,4 +67,9 @@ public static class PrintExtensionMethod
             Console.WriteLine($"{kvp.Key} | {kvp.Value}");
         }
     }
+
+    public static void Print<T>(this SortedSet<T> set,string message)
+    {
+        Console.WriteLine($"{message} {string.Join(" , ", set)}");
+    }
 }
