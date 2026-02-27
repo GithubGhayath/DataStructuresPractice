@@ -11,8 +11,11 @@ namespace SortedSetProblems03
 
         public static void Main(string[] args)
         {
+            // problem 03
+            UnionOfTwoSet();
+
             // problem 02
-            MaxAndMinElementInSortedSet();
+            // MaxAndMinElementInSortedSet();
 
             // problem 01
             // GetNumberBetween();
@@ -73,5 +76,33 @@ namespace SortedSetProblems03
             Console.WriteLine($"The maximum number in set: {Set.Max}");
         }
 
+        // Find the union of two sorted set objects
+        public static void UnionOfTwoSet()
+        {
+            SortedSet<int> Set1 = new SortedSet<int>();
+            SortedSet<int> Set2 = new SortedSet<int>();
+
+            Set1.Add(1);
+            Set1.Add(3);
+            Set1.Add(4);
+            Set1.Add(6);
+            Set1.Add(5);
+            Set1.Add(2);
+
+
+            Set2.Add(10);
+            Set2.Add(11);
+            Set2.Add(9);
+            Set2.Add(8);
+            Set2.Add(7);
+            Set2.Add(6);
+            Set2.Add(6);
+
+            Set1.Print("Set 1 elements: ");
+            Set2.Print("Set 2 elements: ");
+
+            Console.WriteLine($"Set1 and Set2 after union: {string.Join(" , ",Set1.Union(Set2).ToList())}");
+
+        }
     }
 }
