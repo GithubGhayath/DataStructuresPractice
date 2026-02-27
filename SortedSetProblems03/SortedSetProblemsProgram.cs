@@ -11,12 +11,14 @@ namespace SortedSetProblems03
 
         public static void Main(string[] args)
         {
+            // problem 02
+            MaxAndMinElementInSortedSet();
+
             // problem 01
-            GetNumberBetween();
+            // GetNumberBetween();
         }
 
-        // Find Elements in a SortedSet within a given range range
-      
+        // Find Elements in a SortedSet within a given range range.
         private static SortedSet<T> GetViewBetween<T>(SortedSet<T> set, T Low, T High) where T : IComparable<T>
         {
             SortedSet<T> Result = new SortedSet<T>();
@@ -34,6 +36,7 @@ namespace SortedSetProblems03
         public static void GetNumberBetween()
         {
             SortedSet<int> Set = new SortedSet<int>();
+
             Set.Add(1);
             Set.Add(1);
             Set.Add(5);
@@ -44,9 +47,31 @@ namespace SortedSetProblems03
             Set.Add(2);
             Set.Add(0);
             Set.Add(4);
+
             Set.Print("Elements: ");
             GetViewBetween(Set, 3, 6).Print("\n\nElements between [3] and [6]");
 
         }
+
+        // Find the smallest and largest element in a sorted set
+        public static void MaxAndMinElementInSortedSet()
+        {
+            SortedSet<int> Set = new SortedSet<int>();
+            Set.Add(1);
+            Set.Add(1);
+            Set.Add(5);
+            Set.Add(6);
+            Set.Add(8);
+            Set.Add(7);
+            Set.Add(3);
+            Set.Add(2);
+            Set.Add(0);
+            Set.Add(4);
+
+            Set.Print("Elements: ");
+            Console.WriteLine($"\n\nThe minimum number in set: {Set.Min}");
+            Console.WriteLine($"The maximum number in set: {Set.Max}");
+        }
+
     }
 }
