@@ -11,8 +11,12 @@ namespace SortedSetProblems03
 
         public static void Main(string[] args)
         {
+            // problem 05
+            AllElementsLessThanGivenValue();
+
+
             // problem 04
-            RemoveElementsGreaterThanValue();
+            // RemoveElementsGreaterThanValue();
 
 
             // problem 03
@@ -149,7 +153,38 @@ namespace SortedSetProblems03
         }
 
         // Find all elements in a SortedSet less than a given value.
+        public static void AllElementsLessThanGivenValue()
+        {
+            SortedSet<int> Set = new SortedSet<int>();
+            SortedSet<int> Result = new SortedSet<int>();
+            int GivenValue = 6;
+            Set.Add(11);
+            Set.Add(2);
+            Set.Add(4);
+            Set.Add(3);
+            Set.Add(1);
+            Set.Add(6);
+            Set.Add(9);
+            Set.Add(10);
+            Set.Add(7);
+            Set.Add(8);
+            Set.Add(5);
 
+            foreach(int element in Set)
+            {
+                if(element< GivenValue)
+                    Result.Add(element);
+                else
+                {
+                    Result.Add(element);
+                    break;
+                }
+            }
+            Set.Print("List Elements: ");
+            Result.Print("\nList Elements less than [6]: ");
+
+
+        }
 
         // Count the number of elements greater than a given value in a sortedSet
 
