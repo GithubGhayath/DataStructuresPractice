@@ -11,8 +11,12 @@ namespace SortedSetProblems03
 
         public static void Main(string[] args)
         {
+            // problem 07
+            RemoveAllElementsWithinASpcifiedRange();
+
+
             // problem 06
-            CountNumberOfElementsThatGreaterThanSpicifiedValue();
+            // CountNumberOfElementsThatGreaterThanSpicifiedValue();
 
             // problem 05
             // AllElementsLessThanGivenValue();
@@ -229,5 +233,50 @@ namespace SortedSetProblems03
         }
 
         // Remove all elements within a specified range from a SortedSet.
+        private static SortedSet<int> CompleteRange(int[] arr)
+        {
+            SortedSet<int> FullRange = new SortedSet<int>();
+
+            int Counter = arr[0];
+
+            while (arr[arr.Length - 1] >= Counter)
+            {
+                FullRange.Add(Counter);
+                Counter ++;
+            }
+
+            return FullRange;
+        }
+        public static void RemoveAllElementsWithinASpcifiedRange()
+        {
+            int[] arr = new int[] { 5, 9 };
+
+            SortedSet<int> Set1 = new SortedSet<int>();
+            SortedSet<int> Set2 = new SortedSet<int>();
+
+            Set1.Add(11);
+            Set1.Add(2);
+            Set1.Add(4);
+            Set1.Add(3);
+            Set1.Add(1);
+            Set1.Add(6);
+            Set1.Add(9);
+            Set1.Add(10);
+            Set1.Add(7);
+            Set1.Add(12);
+            Set1.Add(13);
+            Set1.Add(8);
+            Set1.Add(5);
+
+            Set2 = CompleteRange(arr);
+
+            Set1.Print("List Elements: ");
+
+            Set1.ExceptWith(Set2);
+
+            Console.WriteLine($"\nThe elements will be removed at the range: [{string.Join(" , ", arr)}]");
+            Set1.Print("\nList Elements after removing: ");
+
+        }
     }
 }
