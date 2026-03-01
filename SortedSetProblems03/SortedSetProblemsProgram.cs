@@ -6,13 +6,16 @@ using System.Text;
 
 namespace SortedSetProblems03
 {
-    internal class SortedSetProblemsProgram
+    internal static class SortedSetProblemsProgram
     {
 
         public static void Main(string[] args)
         {
+            // problem 06
+            CountNumberOfElementsThatGreaterThanSpicifiedValue();
+
             // problem 05
-            AllElementsLessThanGivenValue();
+            // AllElementsLessThanGivenValue();
 
 
             // problem 04
@@ -187,6 +190,43 @@ namespace SortedSetProblems03
         }
 
         // Count the number of elements greater than a given value in a sortedSet
+        private static int CountNumberOfElementsThatGreaterThanSpicifiedValue<T>(this SortedSet<T>Set,T GivenValue) where T : IComparable<T>
+        {
+            int Count = 0;
+
+            foreach (T item in Set)
+            {
+                if(item.CompareTo(GivenValue)>0)
+                    Count++;
+            }
+
+            return Count;
+        }
+        public static void CountNumberOfElementsThatGreaterThanSpicifiedValue()
+        {
+           
+
+            SortedSet<int> Set = new SortedSet<int>();
+
+            Set.Add(11);
+            Set.Add(2);
+            Set.Add(4);
+            Set.Add(3);
+            Set.Add(1);
+            Set.Add(6);
+            Set.Add(9);
+            Set.Add(10);
+            Set.Add(7);
+            Set.Add(12);
+            Set.Add(13);
+            Set.Add(8);
+            Set.Add(5);
+
+            int Count = Set.CountNumberOfElementsThatGreaterThanSpicifiedValue(6);
+
+            Set.Print("List Elements: ");
+            Console.WriteLine($"The number of element that greater than [6] is : {Count}");
+        }
 
         // Remove all elements within a specified range from a SortedSet.
     }
