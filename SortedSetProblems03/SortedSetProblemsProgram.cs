@@ -11,8 +11,12 @@ namespace SortedSetProblems03
 
         public static void Main(string[] args)
         {
+            // problem 04
+            RemoveElementsGreaterThanValue();
+
+
             // problem 03
-            UnionOfTwoSet();
+            // UnionOfTwoSet();
 
             // problem 02
             // MaxAndMinElementInSortedSet();
@@ -104,5 +108,51 @@ namespace SortedSetProblems03
             Console.WriteLine($"Set1 and Set2 after union: {string.Join(" , ",Set1.Union(Set2).ToList())}");
 
         }
+
+        // Remove all elements from a sorted set that are greater than a spcified value.
+        private static SortedSet<T> RemoveElementsGreaterThanValue<T>(SortedSet<T> Set, T Value) where T : IComparable<T>
+        {
+            SortedSet<T> Result = new SortedSet<T>();
+
+            foreach (T item in Set)
+            {
+                if (item.CompareTo(Value) != 0)
+                    Result.Add(item);
+                else
+                {
+                    Result.Add(item);
+                    break;
+                }
+            }
+
+            return Result;
+        }
+        public static void RemoveElementsGreaterThanValue()
+        {
+            SortedSet<int> Set = new SortedSet<int>();
+            Set.Add(11);
+            Set.Add(2);
+            Set.Add(4);
+            Set.Add(3);
+            Set.Add(1);
+            Set.Add(6);
+            Set.Add(9);
+            Set.Add(10);
+            Set.Add(7);
+            Set.Add(8);
+            Set.Add(5);
+
+            Set.Print("List Elements: ");
+            Set = RemoveElementsGreaterThanValue(Set, 6);
+            Set.Print("List Elements after remove all element above 6 : ");
+
+        }
+
+        // Find all elements in a SortedSet less than a given value.
+
+
+        // Count the number of elements greater than a given value in a sortedSet
+
+        // Remove all elements within a specified range from a SortedSet.
     }
 }
