@@ -11,8 +11,12 @@ namespace SortedSetProblems03
 
         public static void Main(string[] args)
         {
+            // problem 08
+            GetElementsOutSideRange();
+
+
             // problem 07
-            RemoveAllElementsWithinASpcifiedRange();
+            // RemoveAllElementsWithinASpcifiedRange();
 
 
             // problem 06
@@ -278,5 +282,40 @@ namespace SortedSetProblems03
             Set1.Print("\nList Elements after removing: ");
 
         }
+
+        // Find all elements in a sortedset that are outside a given range.
+        public static void GetElementsOutSideRange() 
+        {
+            int[] Range = { 5, 8 };
+            SortedSet<int> Set1 = new SortedSet<int>();
+            SortedSet<int> Set2 = CompleteRange(Range);
+            Set1.Add(11);
+            Set1.Add(2);
+            Set1.Add(4);
+            Set1.Add(3);
+            Set1.Add(1);
+            Set1.Add(6);
+            Set1.Add(9);
+            Set1.Add(10);
+            Set1.Add(7);
+            Set1.Add(12);
+            Set1.Add(13);
+            Set1.Add(8);
+            Set1.Add(5);
+
+            Set1.Print("All Elements: ");
+            Set2.Print("Range: ");
+
+            Set1.ExceptWith(Set2);
+            Set1.Print("Elements outside range: ");
+        }
+
+        // Count the number of elements in a sortedset less than or equal a given value.
+
+
+        // Check if a sortedSet contains elements from multiple specified ranges.
+        
+
+        // Track player's scores in a game, storted by player names.
     }
 }
