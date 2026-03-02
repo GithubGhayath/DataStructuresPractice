@@ -11,8 +11,12 @@ namespace SortedSetProblems03
 
         public static void Main(string[] args)
         {
+            // problem 11
+            SortedPlayersByScore();
+
+
             // problem 10
-            CheckIfSortedSetContainsElementsFromMultipleSpecifiedRange();
+            // CheckIfSortedSetContainsElementsFromMultipleSpecifiedRange();
 
 
             // problem 09
@@ -398,5 +402,49 @@ namespace SortedSetProblems03
         }
 
         // Track player's scores in a game, storted by player names.
+        public class Player:IComparable<Player>
+        {
+            public int Id { get; set; }
+            public int Score { get; set; }
+            public string Name { get; set; }
+
+            public Player(int Id, int Score, string Name)
+            {
+                this.Id = Id;
+                this.Score = Score;
+                this.Name = Name;
+            }
+            public override string ToString()
+            {
+                return $"{this.Id} | {this.Name} | {this.Score}";
+            }
+
+            int IComparable<Player>.CompareTo(Player? other)
+            {
+                if (other is null) throw new ArgumentException("Object is not a player");
+
+                   return this.Score.CompareTo(other.Score);
+            }
+        }
+        public static void SortedPlayersByScore()
+        {
+            Player Player1 = new Player(1, 8, "Ghayath");
+            Player Player2 = new Player(2, 10, "Maya");
+            Player Player3 = new Player(3, 12, "Yara");
+            Player Player4 = new Player(4, 16, "Shame");
+            Player Player5 = new Player(5, 15, "Mais");
+            Player Player6 = new Player(6, 9, "Ali");
+
+            SortedSet<Player> Players = new SortedSet<Player>();
+            Players.Add(Player1);
+            Players.Add(Player2);
+            Players.Add(Player3);
+            Players.Add(Player4);
+            Players.Add(Player5);
+            Players.Add(Player6);
+
+            Console.WriteLine("Players Sorted By Score Game: ");
+            Players.OrderByDescending(p=>p.Score).ToList().ForEach(p => Console.WriteLine(p));
+        }
     }
 }
