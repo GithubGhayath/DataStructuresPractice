@@ -11,8 +11,12 @@ namespace SortedSetProblems03
 
         public static void Main(string[] args)
         {
+            // problem 09
+            GetNumberOfElementsLessThanOrEqualGivenValue();
+
+
             // problem 08
-            GetElementsOutSideRange();
+            // GetElementsOutSideRange();
 
 
             // problem 07
@@ -311,10 +315,45 @@ namespace SortedSetProblems03
         }
 
         // Count the number of elements in a sortedset less than or equal a given value.
+        private static int GetNumberOfElementsLessThanOrEqualGivenValue(SortedSet<int>Set,int value)
+        {
+            int Count = 0;
 
+            foreach (int item in Set)
+            {
+                if (item <= value)
+                    Count++;
+                else
+                    break;
+            }
+
+            return Count;
+        }
+
+        public static void GetNumberOfElementsLessThanOrEqualGivenValue()
+        {
+            int GivenValue = 7;
+            SortedSet<int> Set1 = new SortedSet<int>();
+            Set1.Add(11);
+            Set1.Add(2);
+            Set1.Add(4);
+            Set1.Add(3);
+            Set1.Add(1);
+            Set1.Add(6);
+            Set1.Add(9);
+            Set1.Add(10);
+            Set1.Add(7);
+            Set1.Add(12);
+            Set1.Add(13);
+            Set1.Add(8);
+            Set1.Add(5);
+
+            Set1.Print("List Elements: ");
+            Console.WriteLine($"Number of elements that less of equal than [{GivenValue}] is: {GetNumberOfElementsLessThanOrEqualGivenValue(Set1, GivenValue)}");
+        }
 
         // Check if a sortedSet contains elements from multiple specified ranges.
-        
+
 
         // Track player's scores in a game, storted by player names.
     }
