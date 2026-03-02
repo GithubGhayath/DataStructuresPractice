@@ -11,8 +11,12 @@ namespace SortedSetProblems03
 
         public static void Main(string[] args)
         {
+            // problem 10
+            CheckIfSortedSetContainsElementsFromMultipleSpecifiedRange();
+
+
             // problem 09
-            GetNumberOfElementsLessThanOrEqualGivenValue();
+            // GetNumberOfElementsLessThanOrEqualGivenValue();
 
 
             // problem 08
@@ -329,7 +333,6 @@ namespace SortedSetProblems03
 
             return Count;
         }
-
         public static void GetNumberOfElementsLessThanOrEqualGivenValue()
         {
             int GivenValue = 7;
@@ -353,7 +356,46 @@ namespace SortedSetProblems03
         }
 
         // Check if a sortedSet contains elements from multiple specified ranges.
+        public static void CheckIfSortedSetContainsElementsFromMultipleSpecifiedRange()
+        {
+            SortedSet<int> Set1 = new SortedSet<int>();
+            Set1.Add(11);
+            Set1.Add(2);
+            Set1.Add(4);
+            Set1.Add(3);
+            Set1.Add(1);
+            Set1.Add(6);
+            Set1.Add(9);
+            Set1.Add(10);
+            Set1.Add(7);
+            Set1.Add(12);
+            Set1.Add(13);
+            Set1.Add(8);
+            Set1.Add(5);
+            SortedSet<int> Set2 = new SortedSet<int>();
+            Set2.Add(4);
+            Set2.Add(3);
+            Set2.Add(1);
+            SortedSet<int> Set3 = new SortedSet<int>();
+            Set3.Add(7);
+            Set3.Add(12);
+            Set3.Add(13);
+            SortedSet<int> Set4 = new SortedSet<int>();
+            Set4.Add(27);
+            Set4.Add(132);
+            Set4.Add(123);
 
+
+            Set1.Print("Set1 Elements: ");
+            Set2.Print("Set2 Elements: ");
+            Set3.Print("Set3 Elements: ");
+            Set4.Print("Set4 Elements: ");
+
+
+            Console.WriteLine($"Does Set2 Hold by Set1: {Set2.IsSubsetOf(Set1)}");
+            Console.WriteLine($"Does Set3 Hold by Set1: {Set3.IsSubsetOf(Set1)}");
+            Console.WriteLine($"Does Set4 Hold by Set1: {Set4.IsSubsetOf(Set1)}");
+        }
 
         // Track player's scores in a game, storted by player names.
     }
