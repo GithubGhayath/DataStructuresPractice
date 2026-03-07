@@ -12,8 +12,12 @@ namespace ObservableCollectionlProblems04
     {
         public static void Main(string[] agrs)
         {
+            // Problem 03
+            StockSimulation();
+
+
             // Problem 02
-            ShoppinngProcess();
+            // ShoppinngProcess();
 
 
             // Problem 01
@@ -202,10 +206,68 @@ namespace ObservableCollectionlProblems04
         }
 
 
-
-
         // Display a list of real-time stock prices that update dynamically
+        public static void StockSimulation()
+        {
+            Product product1 = new Product(1, "Laptop", "Elictric");
+            Product product2 = new Product(2, "Mobile", "Elictric");
+            Product product3 = new Product(3, "Chary", "Frute");
+            Product product4 = new Product(4, "Eggs", "Food");
+            Product product5 = new Product(5, "Tomato", "Food");
+            Product product6 = new Product(6, "Bods", "Elictric");
+            ObservableCollection<Product> Stock = new ObservableCollection<Product>();
+            Stock.CollectionChanged += Stock_CollectionChanged;
+            Stock.Add(product1);
+            Stock.Add(product2);
+            Stock.Add(product3);
+            Stock.Add(product4);
+            Stock.Add(product5);
+            Stock.Remove(product1);
+            Stock.Move(2, 3);
+            Stock[0] = product6;
+        }
 
+        private static void Stock_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    {
+                        Console.WriteLine("Prodect added to the cart");
+                        foreach(var item in e.NewItems!)
+                            Console.WriteLine(item.ToString());
+                        break;
+                    }
+
+                case NotifyCollectionChangedAction.Remove:
+                    {
+                        Console.WriteLine("Prodect removed from the cart");
+                       
+                        break;
+                    }
+
+                case NotifyCollectionChangedAction.Replace:
+                    {
+                        Console.WriteLine("Prodect replaced with another from the cart");
+                        foreach (var item in e.NewItems!)
+                            Console.WriteLine(item.ToString());
+                        break;
+                    }
+                case NotifyCollectionChangedAction.Move:
+                    {
+                        Console.WriteLine("Prodect moved from the cart");
+                        foreach (var item in e.NewItems!)
+                            Console.WriteLine(item.ToString());
+                        break;
+                    }
+                case NotifyCollectionChangedAction.Reset:
+                    {
+                        Console.WriteLine("The cart is empty");
+                        break;
+                    }
+
+            }
+        }
 
         // Manage a list of tasks dynamically allowing addition,removal,and status updates
     }
