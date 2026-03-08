@@ -12,8 +12,12 @@ namespace ObservableCollectionlProblems04
     {
         public static void Main(string[] agrs)
         {
+            // Problem 04
+            ListOfTask();
+
+
             // Problem 03
-            StockSimulation();
+            // StockSimulation();
 
 
             // Problem 02
@@ -270,5 +274,128 @@ namespace ObservableCollectionlProblems04
         }
 
         // Manage a list of tasks dynamically allowing addition,removal,and status updates
+        private static void _ReadTask(ObservableCollection<clsTask> list)
+        {
+            Console.WriteLine("Write the task at format id/TaskName/ImportantLevel");
+            string TaskText = Console.ReadLine()!;
+            string[]arr = TaskText.Split('/');
+            list.Add(new clsTask(Convert.ToInt32(arr[0]), arr[1], Convert.ToInt32(arr[2])));
+        }
+        private static void _RemoveTask(ObservableCollection<clsTask> list)
+        {
+            
+            Console.WriteLine("Enter index of task that you want to remove: ");
+            int Index = Convert.ToInt32(Console.ReadLine())!;
+            if (list.Count > Index && Index >= 0)
+                list.RemoveAt(Index);
+        }
+        private static void _ReplaceTask(ObservableCollection<clsTask> list)
+        {
+            Console.WriteLine("Write the task at format id/TaskName/ImportantLevel");
+            string TaskText = Console.ReadLine()!;
+            string[] arr = TaskText.Split('/');
+            Console.WriteLine("Enter index you want to reaplce with");
+            int Index = Convert.ToInt32(Console.ReadLine());
+           clsTask NewTaks = (new clsTask(Convert.ToInt32(arr[0]), arr[1], Convert.ToInt32(arr[2])));
+
+            if (list.Count > Index && Index >= 0)
+                list[Index] = NewTaks;
+        }
+        private static void _PrintList(ObservableCollection<clsTask> list)
+        {
+            Console.WriteLine("\n\n Task List: ");
+            foreach(var item in  list)
+                Console.WriteLine(item.ToString());
+        }
+        public class clsTask
+        {
+            public int Id { get; set; }
+            public string? TaskName {  get; set; }
+            public int ImportantLevel {  get; set; }
+            public clsTask(int id, string? taskName, int importantLevel)
+            {
+                Id = id;
+                TaskName = taskName;
+                ImportantLevel = importantLevel;
+            }
+            public override string ToString()
+            {
+                return $"{this.Id} | {this.TaskName} | {this.ImportantLevel}";
+            }
+        }
+        public static void ListOfTask()
+        {
+            char letter = 'n';
+            int Choice = 0;
+          
+            ObservableCollection<clsTask> List = new ObservableCollection<clsTask>();
+            List.CollectionChanged += List_CollectionChanged;
+            do
+            {
+               
+                Console.WriteLine("what do you want to do:\n[1]. Adding Task\n[2]. Remove Task\n[3]. Update Task\n[4]. Print Task list");
+                Choice = Convert.ToInt32(Console.ReadLine());
+
+                switch (Choice)
+                {
+                    case 1:
+                        {
+                            _ReadTask(List);
+                            break;
+                        }
+
+                    case 2:
+                        {
+                            _RemoveTask(List);
+                            break;
+                        }
+
+                    case 3:
+                        {
+                            _ReplaceTask(List);
+                            break;
+                        }
+                    case 4:
+                        {
+                            _PrintList(List);
+                            break;
+                        }
+                }
+
+                Console.WriteLine("Do you want to do oparations at task list [y/n]:");
+                letter = Convert.ToChar(Console.ReadLine()!);
+
+            } while (letter == 'y');
+
+        }
+
+        private static void List_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    {
+                        Console.WriteLine("New task added to the list");
+                       
+                        break;
+                    }
+
+                case NotifyCollectionChangedAction.Remove:
+                    {
+                        Console.WriteLine("Task removed from the List");
+
+                        break;
+                    }
+
+                case NotifyCollectionChangedAction.Replace:
+                    {
+                        Console.WriteLine("Task replaced with another from the list");
+                       
+                        break;
+                    }
+              
+
+            }
+        }
     }
 }
