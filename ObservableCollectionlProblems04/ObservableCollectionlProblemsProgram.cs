@@ -12,8 +12,12 @@ namespace ObservableCollectionlProblems04
     {
         public static void Main(string[] agrs)
         {
+            // Problem 05
+            NotificationOrderManagment();
+
+
             // Problem 04
-            ListOfTask();
+            // ListOfTask();
 
 
             // Problem 03
@@ -368,7 +372,6 @@ namespace ObservableCollectionlProblems04
             } while (letter == 'y');
 
         }
-
         private static void List_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
         {
             switch (e.Action)
@@ -395,6 +398,66 @@ namespace ObservableCollectionlProblems04
                     }
               
 
+            }
+        }
+
+        // Display live chat messages in a chat application as they are received
+
+
+        // Display a dynamic list of weather updates for different cities
+
+        // Display notifications about your order dynamically as they arrive
+        public class Order
+        {
+            public Order(int id, string name, string orderNumber)
+            {
+                Id = id;
+                Name = name;
+                OrderNumber = orderNumber;
+            }
+
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public string OrderNumber {  get; set; }
+
+            public override string ToString()
+            {
+                return $"{this.Id} | {this.Name} | {this.OrderNumber}";
+            }
+        }
+        public static void NotificationOrderManagment()
+        {
+            ObservableCollection<Order> Orders = new ObservableCollection<Order>();
+            Orders.CollectionChanged += Orders_CollectionChanged;
+            Order order1 = new Order(1, Guid.NewGuid().ToString().Substring(0, 4), Guid.NewGuid().ToString().Substring(0, 13));
+            Order order2 = new Order(2, Guid.NewGuid().ToString().Substring(0, 4), Guid.NewGuid().ToString().Substring(0, 13));
+            Order order3 = new Order(3, Guid.NewGuid().ToString().Substring(0, 4), Guid.NewGuid().ToString().Substring(0, 13));
+            Order order4 = new Order(4, Guid.NewGuid().ToString().Substring(0, 4), Guid.NewGuid().ToString().Substring(0, 13));
+            Order order5 = new Order(5, Guid.NewGuid().ToString().Substring(0, 4), Guid.NewGuid().ToString().Substring(0, 13));
+            Order order6 = new Order(6, Guid.NewGuid().ToString().Substring(0, 4), Guid.NewGuid().ToString().Substring(0, 13));
+            Order order7 = new Order(7, Guid.NewGuid().ToString().Substring(0, 4), Guid.NewGuid().ToString().Substring(0, 13));
+
+            Orders.Add(order1);
+            Thread.Sleep(1000);
+            Orders.Add(order2);
+            Thread.Sleep(2000);
+            Orders.Add(order3);
+            Thread.Sleep(5000);
+            Orders.Add(order4);
+            Thread.Sleep(4000);
+            Orders.Add(order5);
+            Thread.Sleep(3000);
+            Orders.Add(order6);
+            Thread.Sleep(3000);
+            Console.WriteLine("All Orders arrived!");
+
+        }
+
+        private static void Orders_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Add) 
+            {
+                Console.WriteLine($"\n\nOrder {e.NewItems![0]} was receved");
             }
         }
     }
