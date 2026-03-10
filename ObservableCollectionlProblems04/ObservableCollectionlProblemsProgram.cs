@@ -12,8 +12,12 @@ namespace ObservableCollectionlProblems04
     {
         public static void Main(string[] agrs)
         {
+            // Problem 06
+            DynamicListOfWeather();
+
+
             // Problem 05
-            NotificationOrderManagment();
+            // NotificationOrderManagment();
 
 
             // Problem 04
@@ -405,6 +409,47 @@ namespace ObservableCollectionlProblems04
 
 
         // Display a dynamic list of weather updates for different cities
+        public class Weather
+        {
+            public int Id {  get; set; }
+            public int OldTemp {  get; set; }
+            public int NewTemp { get; set; }
+            public override string ToString()
+            {
+                return $"{this.Id} | {this.OldTemp} | {this.NewTemp}";
+            }
+            public Weather(int id, int oldTemp, int newTemp)
+            {
+                Id = id;
+                OldTemp = oldTemp;
+                NewTemp = newTemp;
+            }
+        }
+        public static void DynamicListOfWeather()
+        {
+            ObservableCollection<Weather> WeatherList = new ObservableCollection<Weather>();
+            WeatherList.CollectionChanged += WeatherList_CollectionChanged;
+
+            WeatherList.Add(new Weather(1, 30, 32));
+            Thread.Sleep(2000);
+            WeatherList[0] = new Weather(2, 31, 35);
+            Thread.Sleep(2000);
+            WeatherList[0] = new Weather(3, 45, 36);
+            Thread.Sleep(3000);
+            WeatherList[0] = new Weather(4, 34, 37);
+            Thread.Sleep(4000);
+            WeatherList[0] = new Weather(5, 12, 38);
+            Thread.Sleep(5000);
+            WeatherList[0] = new Weather(6, 28, 30);
+        }
+
+        private static void WeatherList_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Replace) 
+            {
+                Console.WriteLine($"The new temp: {e.NewItems![0]}");
+            }
+        }
 
         // Display notifications about your order dynamically as they arrive
         public class Order
