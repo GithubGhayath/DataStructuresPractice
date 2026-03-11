@@ -12,8 +12,11 @@ namespace ObservableCollectionlProblems04
     {
         public static void Main(string[] agrs)
         {
+            // Problem 07
+            ChatMessages();
+            
             // Problem 06
-            DynamicListOfWeather();
+            // DynamicListOfWeather();
 
 
             // Problem 05
@@ -406,6 +409,56 @@ namespace ObservableCollectionlProblems04
         }
 
         // Display live chat messages in a chat application as they are received
+        public class Message
+        {
+            public Message(int id, string content, DateTime dateTimeOfMessage, string sender)
+            {
+                Id = id;
+                Content = content;
+                DateTimeOfMessage = dateTimeOfMessage;
+                Sender = sender;
+            }
+
+            public int Id { get; set; }
+            public string Content { get; set; }
+            public DateTime DateTimeOfMessage { get; set; }
+            public string Sender { get; set; }
+            
+
+            public override string ToString()
+            {
+                return $"\n\n{this.Sender}\n{this.Content}\n\t{this.DateTimeOfMessage.ToString("g")}";
+            }
+
+        }
+        public static void ChatMessages()
+        {
+            ObservableCollection<Message> Messages = new ObservableCollection<Message>();
+            Messages.CollectionChanged += Messages_CollectionChanged;
+
+            Messages.Add(new Message(1, "Hi,This is Ghayath Al.Ali", DateTime.Now, "Ghayath Alali"));
+            Thread.Sleep(3000);
+            Messages.Add(new Message(1, "Hello Ghayath, This is jumes form Customer service\nHow can i help you", DateTime.Now, "Jumes Customer service"));
+            Thread.Sleep(3000);
+            Messages.Add(new Message(1, "Hi Jumes,I faced a problem while trying the product that i bout yesterday!", DateTime.Now, "Ghayath Alali"));
+            Thread.Sleep(3000);
+            Messages.Add(new Message(1, "Ok Ghayth, Can you provide more detail, what product is talking about and do you still have a recept?", DateTime.Now, "Jumes Customer service"));
+            Thread.Sleep(3000);
+            Messages.Add(new Message(1, "Yessterday i bout a new laptop from your store, when i was trying to charge it, the charger or the charge port it didn't work", DateTime.Now, "Ghayath Alali"));
+            Thread.Sleep(3000);
+            Messages.Add(new Message(1, "Oh i'm so sorry about that,by the way you could return the product and get a refund or you can exchange it if you want that, as you know our symboles is that customer is king and king never bargens", DateTime.Now, "Jumes Customer service"));
+            Thread.Sleep(3000);
+            Messages.Add(new Message(1, "Ok jumse i appreachate that,i will came right now, Just the way distans, All greadents:)", DateTime.Now, "Ghayath Alali"));
+
+        }
+
+        private static void Messages_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                Console.WriteLine($"New message recived:\n{e.NewItems![0]}");
+            }
+        }
 
 
         // Display a dynamic list of weather updates for different cities
