@@ -72,4 +72,17 @@ public static class PrintExtensionMethod
     {
         Console.WriteLine($"{message} {string.Join(" , ", set)}");
     }
+
+    public static void Print<T>(this T[][] JaggedArray, string MessageForEachRowToPrint)
+    {
+        for (int j = 0; j < JaggedArray.Length; j++) 
+        {
+            Console.Write($"{MessageForEachRowToPrint}[{j+1}]: ");
+            for (int i = 0; i < JaggedArray[j].Length; i++)
+            {
+                Console.Write($"{JaggedArray[j][i]} , ");
+            }
+            Console.WriteLine();
+        }
+    }
 }
