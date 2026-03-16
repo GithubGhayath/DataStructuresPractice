@@ -4,8 +4,11 @@ internal class Program
 {
     private static void Main(string[] args)
     {
+        // Problem03
+        ClassroomSeats();
+
         // Problem02
-        CompanySales();
+        // CompanySales();
 
         // Problem01
         // StudentMarks();
@@ -44,5 +47,34 @@ internal class Program
             }
             Console.WriteLine($"Quarterly sales for region [{i + 1}]: {Sum / 4}");
         }
+    }
+
+    // Each row in a classroom has a different number of seats. Store the seating arrangement and access each seat dynamically.
+    public class Seat
+    {
+        public Seat(int seatNumber, string seatName)
+        {
+            SeatNumber = seatNumber;
+            SeatName = seatName;
+        }
+
+        public int SeatNumber { get; set; }
+        public string SeatName {  get; set; }
+
+        public override string ToString()
+        {
+            return $"Seat Number: {this.SeatNumber} | Seat Name: {this.SeatName}";
+        }
+    }
+    public static void ClassroomSeats()
+    {
+        Seat[][] Seats = new Seat[5][];
+        Seats[0] = new Seat[4] {new Seat(1,"First Disk"), new Seat(2, "Second Disk"), new Seat(3, "Third Disk"), new Seat(4, "Fourth Disk") };
+        Seats[1] = new Seat[3] {new Seat(5,"Fifth Disk"), new Seat(6, "Sixth Disk"), new Seat(7, "Seventh Disk") };
+        Seats[2] = new Seat[2] {new Seat(8,"Eighth Disk"), new Seat(9, "Nighnth Disk")};
+        Seats[3] = new Seat[1] {new Seat(10,"Tenth Disk") };
+        Seats[4] = new Seat[4] {new Seat(11,"Eleventh Disk"), new Seat(12, "Twelvth Disk"), new Seat(13, "Therrteenth Disk"), new Seat(14, "Fourteenth Disk") };
+
+        Seats.Print("Seat row", "Classroom:");
     }
 }
