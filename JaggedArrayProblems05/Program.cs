@@ -4,8 +4,11 @@ internal class Program
 {
     private static void Main(string[] args)
     {
+        // Problem02
+        CompanySales();
+
         // Problem01
-        StudentMarks();
+        // StudentMarks();
     }
 
     // Use a jagged array to store marks of students across different subjects.
@@ -17,5 +20,29 @@ internal class Program
         Marks[2] = new int[4] {90,85,88,70 };
 
         Marks.Print("Student");
+    }
+
+    // Store sales data for a company across different regions for various quarters.
+    public static void CompanySales()
+    {
+        int[][] Sales = new int[][]
+        {
+            new int[]{1000,1200,1100},
+            new int[]{1500,1600},
+            new int[]{9000,9500,9800,10200},
+        };
+
+        Sales.Print("Region", "Sales for company region:");
+        Console.WriteLine("\n\nQuarterly sales for each region:");
+
+        for (int i = 0; i < Sales.Length; i++)
+        {
+            int Sum = 0;
+            for (int j = 0; j < Sales[i].Length; j++)
+            {
+                Sum += Sales[i][j];
+            }
+            Console.WriteLine($"Quarterly sales for region [{i + 1}]: {Sum / 4}");
+        }
     }
 }
