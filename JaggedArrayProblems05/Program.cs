@@ -4,8 +4,12 @@ internal class Program
 {
     private static void Main(string[] args)
     {
+        // Problem05
+        FlightSeats();
+
+
         // Problem04
-        ProductsSales();
+        // ProductsSales();
 
         // Problem03
         // ClassroomSeats();
@@ -92,6 +96,20 @@ internal class Program
         Products[4] = new int[1] {123};
 
         Products.Print("Product", "Product Sales: ");
+    }
+
+    // Store seat availability for multiple flights where each flight has a different number of seats.
+    public static void FlightSeats()
+    {
+        bool[][] FlightSeat = new bool[6][];
+        FlightSeat[0] = new bool[4] { false, true, false,true };
+        FlightSeat[1] = new bool[6] { false, true, false,true, false, true };
+        FlightSeat[2] = new bool[7] { false, true, false,true, false, true, false};
+        FlightSeat[3] = new bool[2] { false, true };
+        FlightSeat[4] = new bool[1] { false };
+        FlightSeat[5] = new bool[9] { false, true, true, true, true, false, true, false,true };
+
+        FlightSeat.Print("Flight", "Seat availability: ");
     }
 
 }
