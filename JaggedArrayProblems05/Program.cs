@@ -4,8 +4,11 @@ internal class Program
 {
     private static void Main(string[] args)
     {
+        // Problem04
+        ProductsSales();
+
         // Problem03
-        ClassroomSeats();
+        // ClassroomSeats();
 
         // Problem02
         // CompanySales();
@@ -77,4 +80,18 @@ internal class Program
 
         Seats.Print("Seat row", "Classroom:");
     }
+
+    // Store the sales for different products, where each product has varying daily sales.
+    public static void ProductsSales()
+    {
+        int[][] Products = new int[5][];
+        Products[0] = new int[4] {123,432,546,234 };
+        Products[1] = new int[3] {123,432,546 };
+        Products[2] = new int[2] {123,432 };
+        Products[3] = new int[6] {123,432,546,234,76,32};
+        Products[4] = new int[1] {123};
+
+        Products.Print("Product", "Product Sales: ");
+    }
+
 }
