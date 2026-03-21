@@ -1,11 +1,15 @@
 ﻿using Shared.Print;
+using System.Security.Cryptography.X509Certificates;
 
 internal class Program
 {
     private static void Main(string[] args)
     {
+        // Problem07
+        TemepretureForDifferentCities();
+
         // Problem06
-        SurveyResponses();
+        // SurveyResponses();
 
 
         // Problem05
@@ -127,6 +131,20 @@ internal class Program
         SurveyResponses[5] = new bool[9] { false, true, true, true, true, false, true, false, true };
 
         SurveyResponses.Print("Answer", "Survey responses");
+    }
+
+    // Store daily temperature readings for multiple cities, where each city has a different number of recorded days.
+    public static void TemepretureForDifferentCities()
+    {
+        int[][] TemperaturePerDay = new int[6][];
+        TemperaturePerDay[0] = new int[4] { 35, 40, 37, 21 };
+        TemperaturePerDay[1] = new int[3] { 35, 40, 37};
+        TemperaturePerDay[2] = new int[2] { 35, 40 };
+        TemperaturePerDay[3] = new int[6] { 35, 40, 37, 21 , 35, 40};
+        TemperaturePerDay[4] = new int[1] { 51 };
+        TemperaturePerDay[5] = new int[1] { 51 };
+
+        TemperaturePerDay.Print("City", "Daylie Tempreature");
     }
 
 }
