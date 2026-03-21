@@ -4,8 +4,12 @@ internal class Program
 {
     private static void Main(string[] args)
     {
+        // Problem06
+        SurveyResponses();
+
+
         // Problem05
-        FlightSeats();
+        // FlightSeats();
 
 
         // Problem04
@@ -110,6 +114,19 @@ internal class Program
         FlightSeat[5] = new bool[9] { false, true, true, true, true, false, true, false,true };
 
         FlightSeat.Print("Flight", "Seat availability: ");
+    }
+    // Store survey responses where each respondent answers a different number of questions.
+    public static void SurveyResponses()
+    {
+        bool[][] SurveyResponses = new bool[6][];
+        SurveyResponses[0] = new bool[4] { false, true, false, true };
+        SurveyResponses[1] = new bool[6] { false, true, false, true, false, true };
+        SurveyResponses[2] = new bool[7] { false, true, false, true, false, true, false };
+        SurveyResponses[3] = new bool[2] { false, true };
+        SurveyResponses[4] = new bool[1] { false };
+        SurveyResponses[5] = new bool[9] { false, true, true, true, true, false, true, false, true };
+
+        SurveyResponses.Print("Answer", "Survey responses");
     }
 
 }
