@@ -1,9 +1,14 @@
-﻿internal class Program
+﻿using System.Net.Cache;
+
+internal class Program
 {
     private static void Main(string[] args)
     {
+        // Problem 04
+        CheckStudentMarks();
+
         // Problem 03
-        EmployeesData();
+        // EmployeesData();
 
         // Problem 02
         // PlayerData();
@@ -59,5 +64,19 @@
         
         foreach (var e in OrderdEmps)
             Console.WriteLine($"Name: {e.Item1} | Salary: {e.Item2}");
+    }
+
+    // Write a function that check the student mark and returns success status and the mark value.
+    private static (int,string) _CheckStudentMark((string, int, int) Studnet)
+    {
+        return Studnet.Item3 >= 60 ? (Studnet.Item3, "Success") : (Studnet.Item3, "Failure");
+    }
+    public static void CheckStudentMarks()
+    {
+        (string, int, int) StudentInfo1 = ("Ghayath", 24, 70);
+        (string, int, int) StudentInfo2 = ("Ali", 24, 48);
+
+        Console.WriteLine($"Studnet: {StudentInfo1.Item1} is {_CheckStudentMark(StudentInfo1).Item2} with Mark: {_CheckStudentMark(StudentInfo1).Item1}");
+        Console.WriteLine($"Studnet: {StudentInfo2.Item1} is {_CheckStudentMark(StudentInfo2).Item2} with Mark: {_CheckStudentMark(StudentInfo2).Item1}");
     }
 }
