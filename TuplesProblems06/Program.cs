@@ -4,8 +4,11 @@ internal class Program
 {
     private static void Main(string[] args)
     {
+        // Problem 05
+        GetPersonAddressInfo();
+
         // Problem 04
-        CheckStudentMarks();
+        // CheckStudentMarks();
 
         // Problem 03
         // EmployeesData();
@@ -79,4 +82,15 @@ internal class Program
         Console.WriteLine($"Studnet: {StudentInfo1.Item1} is {_CheckStudentMark(StudentInfo1).Item2} with Mark: {_CheckStudentMark(StudentInfo1).Item1}");
         Console.WriteLine($"Studnet: {StudentInfo2.Item1} is {_CheckStudentMark(StudentInfo2).Item2} with Mark: {_CheckStudentMark(StudentInfo2).Item1}");
     }
+
+    // Use tuples to represent and display a person's address.
+    private static (string Address, string Springfield) GetPersonAddress()
+    {
+        return ("123 Main St", " IL, 62704");
+    }
+    public static void GetPersonAddressInfo()
+    {
+        Console.WriteLine($"Address: {GetPersonAddress().Address},Springfield, {GetPersonAddress().Springfield}");
+    }
+
 }
