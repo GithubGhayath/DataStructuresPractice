@@ -1,4 +1,6 @@
-﻿namespace Shared.Print;
+﻿using System.Collections;
+
+namespace Shared.Print;
 
 public static class PrintExtensionMethod
 {
@@ -85,5 +87,17 @@ public static class PrintExtensionMethod
             }
             Console.WriteLine();
         }
+    }
+
+    public static void Print(this BitArray arr, string message) 
+    {
+        Console.WriteLine($"\n{message}:\n");
+
+        foreach (bool item in arr)
+        {
+            string result = item ? "1" : "0";
+            Console.Write($"{result} ");    
+        }
+        Console.WriteLine($"\n");
     }
 }
