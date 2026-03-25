@@ -5,8 +5,11 @@ internal class Program
 {
     private static void Main(string[] args)
     {
+        // Problem 04
+        ScheduleTask();
+
         // Problem 03
-        Theater();
+        // Theater();
 
         // Problem 02
         // SurveyResult();
@@ -58,5 +61,20 @@ internal class Program
         Seats.SetAll(true);
 
         Seats.Print("Theater seats status now: ");
+    }
+
+    // Represent a weekly schedule with BitArray (7 days). Check which days are free.
+    public static void ScheduleTask()
+    {
+        BitArray Schedule = new BitArray(7, true);
+        Schedule[5] = false;
+        Schedule[1] = false;
+        Schedule[3] = false;
+
+        for (int day = 0; day < Schedule.Length; day++)
+        {
+            if (!Schedule[day])
+                Console.WriteLine($"Day [{day + 1}] is free!");
+        }
     }
 }
