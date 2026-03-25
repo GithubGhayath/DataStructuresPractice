@@ -1,12 +1,16 @@
 ﻿using Shared.Print;
 using System.Collections;
+using System.Diagnostics;
+using System.Security.Cryptography.X509Certificates;
 
 internal class Program
 {
     private static void Main(string[] args)
     {
+        // Problem 05
+        TrackPassword();
         // Problem 04
-        ScheduleTask();
+        // ScheduleTask();
 
         // Problem 03
         // Theater();
@@ -76,5 +80,77 @@ internal class Program
             if (!Schedule[day])
                 Console.WriteLine($"Day [{day + 1}] is free!");
         }
+    }
+
+    // Use a BitArray to track whether a password has an uppercase letter, a lowercase letter, a digit, and a special character.
+    private static BitArray _IsPasswordValid(string password)
+    {
+        BitArray Cases = new BitArray(4); // [0]: uppercase letter, [1]: lowercase letter,[2]: digit, [3]: special character
+
+        foreach (char item in password)
+        {
+
+            if (char.IsDigit(item))
+            {
+                Cases[2] = true;
+            }
+            else if (char.IsPunctuation(item))
+            {
+                Cases[3] = true;
+            }
+            else if (char.IsUpper(item))
+            {
+                Cases[0] = true;
+            }
+            else
+            {
+                Cases[1] = true;
+            }
+        }
+
+        return Cases;
+    }
+
+    private static string CheckWhatIsMissingAtPassword(string password)
+    {
+        string _Result = string.Empty;
+        BitArray Result = _IsPasswordValid(password);
+        if (Result.HasAllSet())
+            _Result = "Password is valid";
+        else
+        {
+
+            if (!Result[0])
+                _Result = "Missing uppercase letter";
+            else if (!Result[1])
+                _Result += "\nMissing lowercase letter";
+            else if (!Result[2])
+                _Result += "\nMissing digit";
+            else if (!Result[3])
+                _Result += "\nMissing special character";
+
+
+        }
+        return _Result;
+
+    }
+
+    private static void _PrintValidationResult(string password)
+    {
+        Console.WriteLine($"\nThe password [{password}] is: \n{CheckWhatIsMissingAtPassword(password)}");
+    }
+    public static void TrackPassword()
+    {
+        string Password1 = "Abc123!";
+        string Password2 = "abc123!";
+        string Password3 = "ABC123!";
+        string Password4 = "Abcdef!";
+        string Password5 = "Abc1234";
+
+        _PrintValidationResult(Password1);
+        _PrintValidationResult(Password2);
+        _PrintValidationResult(Password3);
+        _PrintValidationResult(Password4);
+        _PrintValidationResult(Password5);
     }
 }
