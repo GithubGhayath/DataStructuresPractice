@@ -83,6 +83,7 @@ internal class Program
     }
 
     // Use a BitArray to track whether a password has an uppercase letter, a lowercase letter, a digit, and a special character.
+    // Use a BitArray to enforce a password policy with 4 rules (e.g., uppercase, lowercase, digit, special character). Check if a password meets the policy
     private static BitArray _IsPasswordValid(string password)
     {
         BitArray Cases = new BitArray(4); // [0]: uppercase letter, [1]: lowercase letter,[2]: digit, [3]: special character
