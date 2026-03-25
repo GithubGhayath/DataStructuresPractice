@@ -5,8 +5,11 @@ internal class Program
 {
     private static void Main(string[] args)
     {
+        // Problem 03
+        Theater();
+
         // Problem 02
-        SurveyResult();
+        // SurveyResult();
 
         // Problem 01
         // LightAtSmartHome();
@@ -46,5 +49,14 @@ internal class Program
         SurveyThirdUser.Print("Survey result of third user");
         SurveyFourthUser.Print("Survey result of fourth user");
         SurveyFifthUser.Print("Survey result of fifth user");
+    }
+
+    // Use BitArray to track which seats (1,000 seats) in a theater are booked.
+    public static void Theater()
+    {
+        BitArray Seats = new BitArray(1000);
+        Seats.SetAll(true);
+
+        Seats.Print("Theater seats status now: ");
     }
 }
