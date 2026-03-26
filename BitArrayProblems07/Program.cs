@@ -7,8 +7,12 @@ internal class Program
 {
     private static void Main(string[] args)
     {
+        // Problem 09
+        TestBitWise();
+
+
         // Problem 08
-        TestFunction();
+        // TestFunction();
 
 
         // Problem 07
@@ -224,5 +228,24 @@ internal class Program
         Console.WriteLine($"Number of true: {Count.NumberOfTrue}");
         Console.WriteLine($"Number of false: {Count.NumberOfFalse}");
     }
+
+    // Write a function that takes two BitArray objects of equal length and returns a new BitArray that is the result of a bitwise AND operation.
+    private static BitArray _PerformBitWiseAnd(BitArray arr1, BitArray arr2)
+    {
+        return arr1.And(arr2);
+    }
+    public static void TestBitWise()
+    {
+        bool[] param1 = { false, false, true, true };
+        bool[] param2 = { false, false, true, true };
+        BitArray arr1 = new BitArray(param1);
+        BitArray arr2 = new BitArray(param2);
+
+        arr1.Print("Array1: ");
+        arr2.Print("Array2: ");
+        _PerformBitWiseAnd(arr1, arr2).Print("\n\nReslut: ");
+    }
+
+    
 
 }
