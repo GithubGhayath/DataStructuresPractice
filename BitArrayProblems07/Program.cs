@@ -7,8 +7,12 @@ internal class Program
 {
     private static void Main(string[] args)
     {
+        // Problem 06
+        TrafficLightsAtThreeIntersections();
+
         // Problem 05
-        TrackPassword();
+        // TrackPassword();
+
         // Problem 04
         // ScheduleTask();
 
@@ -153,5 +157,17 @@ internal class Program
         _PrintValidationResult(Password3);
         _PrintValidationResult(Password4);
         _PrintValidationResult(Password5);
+    }
+
+
+    // Use a BitArray to represent the state of traffic lights at 3 intersections (Red, Yellow, Green). Change the light for one intersection.
+    public static void TrafficLightsAtThreeIntersections()
+    {
+        BitArray TrafficLight = new BitArray(3);
+        TrafficLight[0] = true; // Green
+        TrafficLight[1] = false; // Yellow
+        TrafficLight[2] = false; // Red
+
+        TrafficLight.Print("Traffic Lights: ");
     }
 }
