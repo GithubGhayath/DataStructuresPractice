@@ -1,14 +1,18 @@
 ﻿using Shared.Print;
 using System.Collections;
 using System.Diagnostics;
+using System.Numerics;
 using System.Security.Cryptography.X509Certificates;
 
 internal class Program
 {
     private static void Main(string[] args)
     {
+        // Problem 10
+        ConvertBitArrayToInteger();
+
         // Problem 09
-        TestBitWise();
+        // TestBitWise();
 
 
         // Problem 08
@@ -246,6 +250,32 @@ internal class Program
         _PerformBitWiseAnd(arr1, arr2).Print("\n\nReslut: ");
     }
 
-    
+    // Write a function to convert a BitArray (representing binary digits) into an integer.
+    private static int _ConvertBitArrayToInteger(BitArray arr)
+    {
+        double IntegerNumber = 0;
+
+        for (int i = 0; i < arr.Length; i++) 
+        {
+            if (arr[i])
+            {
+                IntegerNumber += Math.Pow(2, i);
+            }
+        }
+
+        return Convert.ToInt32(IntegerNumber);
+    }
+
+    public static void ConvertBitArrayToInteger()
+    {
+        bool[] param1 = { false, false, true, true };
+        BitArray arr1 = new BitArray(param1);
+
+
+        arr1.Print("Arr elements: ");
+        Console.WriteLine($"\nThe integer number is: {_ConvertBitArrayToInteger(arr1)}");
+
+    }
+
 
 }
