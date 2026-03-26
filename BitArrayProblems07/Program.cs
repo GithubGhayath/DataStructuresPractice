@@ -7,8 +7,12 @@ internal class Program
 {
     private static void Main(string[] args)
     {
+        // Problem 07
+        VotesRecorder();
+
+
         // Problem 06
-        TrafficLightsAtThreeIntersections();
+        // TrafficLightsAtThreeIntersections();
 
         // Problem 05
         // TrackPassword();
@@ -169,5 +173,27 @@ internal class Program
         TrafficLight[2] = false; // Red
 
         TrafficLight.Print("Traffic Lights: ");
+    }
+
+    // Use a BitArray to record votes (yes/no) for a decision in a committee of 8 members. Count the number of "yes" votes.
+    public static void VotesRecorder()
+    {
+        bool[] arr = { false, true, true, true, true, false, false, true };
+        BitArray Recorder = new BitArray(arr);
+
+        int NumberOfVotesYes = 0;
+        int NumberOfVotesNo = 0;
+
+        foreach(bool vote in Recorder)
+        {
+            if (vote)
+                NumberOfVotesYes++;
+            else
+                NumberOfVotesNo++;
+        }
+
+        Console.WriteLine($"Total votes: [{Recorder.Count}]");
+        Console.WriteLine($"Number of \"Yes\" votes: [{NumberOfVotesYes}]");
+        Console.WriteLine($"Number of \"No\" votes: [{NumberOfVotesNo}]");
     }
 }
