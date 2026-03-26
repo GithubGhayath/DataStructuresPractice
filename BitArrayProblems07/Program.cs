@@ -7,8 +7,12 @@ internal class Program
 {
     private static void Main(string[] args)
     {
+        // Problem 08
+        TestFunction();
+
+
         // Problem 07
-        VotesRecorder();
+        // VotesRecorder();
 
 
         // Problem 06
@@ -196,4 +200,29 @@ internal class Program
         Console.WriteLine($"Number of \"Yes\" votes: [{NumberOfVotesYes}]");
         Console.WriteLine($"Number of \"No\" votes: [{NumberOfVotesNo}]");
     }
+
+    // Write a function to count the number of true values and false values in a BitArray.
+    private static (int NumberOfTrue,int NumberOfFalse) CountTrue_False(BitArray arr)
+    {
+        int NumberOfTrue = 0;
+
+        foreach (bool item in arr)
+        {
+            if (item)
+                NumberOfTrue++;
+        }
+        return (NumberOfTrue, arr.Length - NumberOfTrue);
+    }
+
+    public static void TestFunction()
+    {
+        bool[] arr = { false, true, true, true, true, false, false, true };
+        BitArray Recorder = new BitArray(arr);
+
+        (int NumberOfTrue, int NumberOfFalse) Count = CountTrue_False(Recorder);
+
+        Console.WriteLine($"Number of true: {Count.NumberOfTrue}");
+        Console.WriteLine($"Number of false: {Count.NumberOfFalse}");
+    }
+
 }
