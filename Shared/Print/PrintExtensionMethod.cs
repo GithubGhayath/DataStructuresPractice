@@ -100,4 +100,11 @@ public static class PrintExtensionMethod
         }
         Console.WriteLine($"\n");
     }
+
+    public static void Print(this Hashtable hashtable,string message)
+    {
+        Console.WriteLine($"{message}:\n");
+        foreach (DictionaryEntry kvp in hashtable)
+            Console.WriteLine($"Key: {kvp.Key} , Value: {kvp.Value}");
+    }
 }
