@@ -8,8 +8,12 @@ internal class Program
 {
     private static void Main(string[] args)
     {
+        // Problem 11
+        TestConvertInteger();
+
+
         // Problem 10
-        ConvertBitArrayToInteger();
+        // ConvertBitArrayToInteger();
 
         // Problem 09
         // TestBitWise();
@@ -277,5 +281,25 @@ internal class Program
 
     }
 
+    // Write a function that takes an integer and returns a BitArray representing its binary digits.
+    private static BitArray _ConvertIntegerToBinary(int Number)
+    {
+        List<bool> Binary = new List<bool>();
 
+
+        while (Number != 0 )
+        { 
+            Binary.Add(Convert.ToBoolean(Number % 2));
+            Number = Convert.ToInt32(Math.Floor((double)Number / 2));
+        }
+
+     
+        return new BitArray(Binary.ToArray());
+    }
+
+    public static void TestConvertInteger()
+    {
+        int num = 12;
+        _ConvertIntegerToBinary(num).Print("12 in binary: ");
+    }
 }
