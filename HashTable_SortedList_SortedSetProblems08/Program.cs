@@ -1,13 +1,17 @@
 ﻿using Microsoft.VisualBasic;
 using Shared.Print;
 using System.Collections;
+using System.Security.Cryptography.X509Certificates;
 
 internal class Program
 {
     private static void Main(string[] args)
     {
+        // Problem 03
+        FindMissingNumber();
+
         // Problem 02
-        RemoveDubplicate();
+        // RemoveDubplicate();
 
         // Problem 01
         // TestCopyFunction();
@@ -45,5 +49,34 @@ internal class Program
         Number1.Print("\n\nList without duplicate:");
     }
 
+    // Given a range of numbers, find the missing numbers by comparing with a SortedSet.
+    public static void FindMissingNumber()
+    {
+        List<int> Range = new List<int>() { 1, 2, 4, 5, 6, 7, 9, 1, 2, 9 };
+
+        SortedSet<int> Nums = new SortedSet<int>(Range);
+
+        List<int> MissingNumbers = new List<int>();
+
+        Range.Print("List Element: ");
+        Nums.Print("Sorted set elements: ");
+
+        int RangeStartAt = Nums.ToList()[0];
+
+        for (int i = 0; i < Nums.Count; i++)
+        {
+            if (Nums.ToList()[i] != RangeStartAt)
+            {
+                MissingNumbers.Add(RangeStartAt);
+                i--;
+            }
+
+            RangeStartAt++;
+        }
+
+
+        MissingNumbers.Print("\n\nMissing number at range: ");
+
+    }
 
 }
