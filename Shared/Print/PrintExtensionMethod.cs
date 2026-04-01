@@ -107,4 +107,10 @@ public static class PrintExtensionMethod
         foreach (DictionaryEntry kvp in hashtable)
             Console.WriteLine($"Key: {kvp.Key} , Value: {kvp.Value}");
     }
+
+    public static void Print<T>(this List<T> List,string Message)
+    {
+        Console.WriteLine($"{Message}:\n{string.Join(" , ", List)} ");
+        
+    }
 }
