@@ -7,8 +7,12 @@ internal class Program
 {
     private static void Main(string[] args)
     {
+        // Problem 04
+        MaintainUniqueActiveUsers();
+
+
         // Problem 03
-        FindMissingNumber();
+        // FindMissingNumber();
 
         // Problem 02
         // RemoveDubplicate();
@@ -79,4 +83,32 @@ internal class Program
 
     }
 
+    // Maintain a list of unique active users by their login times, and automatically sort them in chronological order.
+
+    public class User
+    {
+        public int Id { get; set; }
+        public string NameName { get; set; }
+        public string Password { get; set; }
+
+     
+    }
+    
+
+    public static void MaintainUniqueActiveUsers()
+    {
+       
+        SortedList<DateTime,User> activeUsers = new SortedList<DateTime,User>();
+
+        activeUsers.Add(new DateTime(2022, 10, 2), new User { Id = 1, NameName = "Alice", Password = "password1" });
+        activeUsers.Add(new DateTime(2024, 10, 2), new User { Id = 3, NameName = "Charlie", Password = "password3" });
+        activeUsers.Add(new DateTime(2023, 10, 2), new User { Id = 2, NameName = "Bob", Password = "password2" });
+
+
+
+        foreach (var user in activeUsers)
+        {
+            Console.WriteLine($"User: {user.Value.NameName}, Login Time: {user.Key}");
+        }
+    }
 }
